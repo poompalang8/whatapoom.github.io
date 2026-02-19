@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --pink-100: #fef2f7;
   --pink-200: #f8dbe7;
   --pink-300: #f1bfd6;
@@ -27,25 +27,14 @@ body {
   min-height: 100vh;
 }
 
-.page {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 32px 20px 80px;
-}
+.page {\n  min-height: 100vh;\n  margin: 0;\n  padding: 0;\n}
 
 a {
   color: inherit;
   text-decoration: none;
 }
 
-.hero {
-  background: linear-gradient(120deg, #fff8fb 0%, #fde6f1 50%, #f8d2e4 100%);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  box-shadow: 0 20px 60px var(--shadow);
-  position: relative;
-  overflow: hidden;
-}
+.hero {\n  background: linear-gradient(120deg, #fff8fb 0%, #fde6f1 50%, #f8d2e4 100%);\n  border-radius: 0;\n  min-height: 100vh;\n  padding: 0;\n  box-shadow: 0 20px 60px var(--shadow);\n  position: relative;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n}
 
 .hero::after {
   content: "";
@@ -57,13 +46,7 @@ a {
   filter: blur(2px);
 }
 
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 48px;
-}
+.nav {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 16px;\n  padding: 24px 32px;\n  position: sticky;\n  top: 0;\n  background: rgba(255, 255, 255, 0.75);\n  backdrop-filter: blur(10px);\n  z-index: 2;\n  border-bottom: 1px solid rgba(216, 138, 182, 0.25);\n}
 
 .logo {
   font-family: "Bodoni Moda", serif;
@@ -92,12 +75,7 @@ a {
   box-shadow: 0 10px 24px rgba(122, 58, 82, 0.18);
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 32px;
-  align-items: center;
-}
+.hero-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));\n  gap: 32px;\n  align-items: center;\n  padding: 40px 32px 56px;\n  flex: 1;\n}
 
 .hero-copy {
   display: grid;
@@ -352,19 +330,13 @@ h1 {
   }
 }
 
-@media (max-width: 720px) {
-  .nav {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+@media (max-width: 720px) {\n  .nav {\n    flex-direction: column;\n    align-items: flex-start;\n    padding: 20px;\n  }\n\n  .nav-links {\n    flex-wrap: wrap;\n  }\n\n  .hero-grid {\n    padding: 24px 20px 40px;\n  }\n\n  .footer {\n    flex-direction: column;\n    gap: 10px;\n  }\n}
 
   .nav-links {
     flex-wrap: wrap;
   }
 
-  .hero {
-    padding: 24px;
-  }
+  .hero {\n  background: linear-gradient(120deg, #fff8fb 0%, #fde6f1 50%, #f8d2e4 100%);\n  border-radius: 0;\n  min-height: 100vh;\n  padding: 0;\n  box-shadow: 0 20px 60px var(--shadow);\n  position: relative;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n}
 
   .footer {
     flex-direction: column;
