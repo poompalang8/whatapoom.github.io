@@ -1,16 +1,10 @@
 ﻿:root {
   --pink-100: #fef2f7;
-  --pink-200: #f8dbe7;
-  --pink-300: #f1bfd6;
-  --pink-400: #e6a2c7;
   --pink-500: #d88ab6;
   --rose-700: #7a3a52;
   --ink: #2a1c22;
-  --cream: #fff8fb;
   --shadow: rgba(122, 58, 82, 0.18);
   --radius-lg: 32px;
-  --radius-md: 20px;
-  --radius-sm: 12px;
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -24,17 +18,25 @@ body {
   font-family: "Space Grotesk", sans-serif;
   color: var(--ink);
   background: radial-gradient(circle at top left, #fff4f9 0%, #fde7f1 35%, #f8d6e6 70%, #f3c7da 100%);
-  min-height: 100vh;
 }
 
-.page {\n  min-height: 100vh;\n  margin: 0;\n  padding: 0;\n}
+.page {
+  min-height: 100vh;
+}
 
 a {
   color: inherit;
   text-decoration: none;
 }
 
-.hero {\n  background: linear-gradient(120deg, #fff8fb 0%, #fde6f1 50%, #f8d2e4 100%);\n  border-radius: 0;\n  min-height: 100vh;\n  padding: 0;\n  box-shadow: 0 20px 60px var(--shadow);\n  position: relative;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n}
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(120deg, #fff8fb 0%, #fde6f1 50%, #f8d2e4 100%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
 .hero::after {
   content: "";
@@ -46,7 +48,21 @@ a {
   filter: blur(2px);
 }
 
-.nav {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 16px;\n  padding: 24px 32px;\n  position: sticky;\n  top: 0;\n  background: rgba(255, 255, 255, 0.75);\n  backdrop-filter: blur(10px);\n  z-index: 2;\n  border-bottom: 1px solid rgba(216, 138, 182, 0.25);\n}
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 32px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(216, 138, 182, 0.25);
+  z-index: 3;
+}
 
 .logo {
   font-family: "Bodoni Moda", serif;
@@ -75,7 +91,14 @@ a {
   box-shadow: 0 10px 24px rgba(122, 58, 82, 0.18);
 }
 
-.hero-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));\n  gap: 32px;\n  align-items: center;\n  padding: 40px 32px 56px;\n  flex: 1;\n}
+.hero-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: center;
+  gap: 32px;
+  padding: 120px 32px 56px;
+}
 
 .hero-copy {
   display: grid;
@@ -174,152 +197,6 @@ h1 {
   font-size: 12px;
 }
 
-.section {
-  margin-top: 64px;
-  display: grid;
-  gap: 24px;
-}
-
-.section-title h2 {
-  font-family: "Bodoni Moda", serif;
-  font-size: 32px;
-}
-
-.section-title p {
-  color: var(--rose-700);
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.8);
-  padding: 24px;
-  border-radius: var(--radius-md);
-  box-shadow: 0 14px 30px rgba(122, 58, 82, 0.15);
-}
-
-.pill-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.pill-grid span {
-  background: rgba(255, 255, 255, 0.75);
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(216, 138, 182, 0.35);
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-.project-card {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  border-radius: var(--radius-md);
-  box-shadow: 0 16px 34px rgba(122, 58, 82, 0.16);
-  display: grid;
-  gap: 14px;
-  transition: transform 0.3s var(--ease);
-}
-
-.project-card:hover {
-  transform: translateY(-6px);
-}
-
-.project-cover {
-  height: 140px;
-  border-radius: var(--radius-sm);
-  background-size: cover;
-  background-position: center;
-}
-
-.cover-a {
-  background-image: linear-gradient(120deg, #f8d1e5, #f4b9d4, #ffe8f3);
-}
-
-.cover-b {
-  background-image: linear-gradient(120deg, #f3bfd5, #e5a7c0, #fbe0ee);
-}
-
-.cover-c {
-  background-image: linear-gradient(120deg, #f9dbe8, #f1b3cc, #fdeef6);
-}
-
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  font-size: 12px;
-}
-
-.project-tags span {
-  background: var(--pink-100);
-  padding: 6px 10px;
-  border-radius: 999px;
-}
-
-.timeline {
-  display: grid;
-  gap: 20px;
-}
-
-.timeline-item {
-  display: grid;
-  grid-template-columns: 24px 1fr;
-  gap: 16px;
-  align-items: flex-start;
-}
-
-.dot {
-  width: 14px;
-  height: 14px;
-  margin-top: 6px;
-  border-radius: 999px;
-  background: var(--pink-500);
-  box-shadow: 0 0 0 6px rgba(216, 138, 182, 0.2);
-}
-
-.muted {
-  color: var(--rose-700);
-  font-size: 14px;
-}
-
-.contact-card {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 28px;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 16px 36px rgba(122, 58, 82, 0.2);
-}
-
-.contact-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: flex-start;
-}
-
-.footer {
-  margin-top: 64px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-  color: var(--rose-700);
-}
-
 @keyframes float {
   0%,
   100% {
@@ -330,16 +207,18 @@ h1 {
   }
 }
 
-@media (max-width: 720px) {\n  .nav {\n    flex-direction: column;\n    align-items: flex-start;\n    padding: 20px;\n  }\n\n  .nav-links {\n    flex-wrap: wrap;\n  }\n\n  .hero-grid {\n    padding: 24px 20px 40px;\n  }\n\n  .footer {\n    flex-direction: column;\n    gap: 10px;\n  }\n}
+@media (max-width: 720px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 20px;
+  }
 
   .nav-links {
     flex-wrap: wrap;
   }
 
-  .hero {\n  background: linear-gradient(120deg, #fff8fb 0%, #fde6f1 50%, #f8d2e4 100%);\n  border-radius: 0;\n  min-height: 100vh;\n  padding: 0;\n  box-shadow: 0 20px 60px var(--shadow);\n  position: relative;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n}
-
-  .footer {
-    flex-direction: column;
-    gap: 10px;
+  .hero-grid {
+    padding: 130px 20px 40px;
   }
 }
