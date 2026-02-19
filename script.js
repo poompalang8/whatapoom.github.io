@@ -18,7 +18,7 @@ if (showcase && phone) {
     const progress = scrolled / maxScroll;
 
     const startX = -window.innerWidth * 0.42;
-    const endX = window.innerWidth * 0.42;
+    const endX = window.innerWidth * 0.2;
     const x = startX + (endX - startX) * progress;
     const rotate = 16 - 32 * progress;
 
