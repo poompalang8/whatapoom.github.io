@@ -17,8 +17,8 @@ if (showcase && phone) {
     const scrolled = clamp(-rect.top, 0, maxScroll);
     const progress = scrolled / maxScroll;
 
-    const startX = window.innerWidth * 0.42;
-    const endX = -window.innerWidth * 0.42;
+    const startX = -window.innerWidth * 0.42;
+    const endX = window.innerWidth * 0.42;
     const x = startX + (endX - startX) * progress;
     const rotate = 16 - 32 * progress;
 
@@ -39,3 +39,4 @@ if (showcase && phone) {
   window.addEventListener('resize', requestTick);
   updatePhoneAnimation();
 }
+
