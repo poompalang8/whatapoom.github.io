@@ -18,6 +18,7 @@ body {
   font-family: "Space Grotesk", sans-serif;
   color: var(--ink);
   background: radial-gradient(circle at top left, #fff4f9 0%, #fde7f1 35%, #f8d6e6 70%, #f3c7da 100%);
+  overflow-x: hidden;
 }
 
 .page {
@@ -114,15 +115,23 @@ a {
   color: var(--rose-700);
 }
 
-h1 {
+h1,
+h2 {
   font-family: "Bodoni Moda", serif;
-  font-size: clamp(36px, 5vw, 56px);
   line-height: 1.05;
+}
+
+h1 {
+  font-size: clamp(36px, 5vw, 56px);
+}
+
+.swillcal-showcase h2 {
+  font-size: clamp(34px, 6vw, 62px);
 }
 
 .lead {
   font-size: 18px;
-  max-width: 480px;
+  max-width: 560px;
 }
 
 .cta-row {
@@ -142,11 +151,6 @@ h1 {
   background: var(--pink-500);
   color: #fff;
   box-shadow: 0 12px 30px rgba(216, 138, 182, 0.35);
-}
-
-.btn.ghost {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(216, 138, 182, 0.5);
 }
 
 .btn:hover {
@@ -179,7 +183,6 @@ h1 {
 }
 
 .hero-card-body h2 {
-  font-family: "Bodoni Moda", serif;
   font-size: 28px;
   margin-bottom: 6px;
 }
@@ -195,6 +198,80 @@ h1 {
   padding: 6px 10px;
   border-radius: 999px;
   font-size: 12px;
+}
+
+.swillcal-showcase {
+  position: relative;
+  height: 220vh;
+  padding: 14vh 32px;
+  background: linear-gradient(180deg, rgba(255, 245, 250, 0.92), rgba(248, 214, 230, 0.95));
+}
+
+.showcase-copy {
+  position: sticky;
+  top: 12vh;
+  z-index: 2;
+  max-width: 560px;
+}
+
+.phone-stage {
+  position: sticky;
+  top: 14vh;
+  height: 72vh;
+  pointer-events: none;
+}
+
+.iphone-shell {
+  position: absolute;
+  top: 4vh;
+  left: 50%;
+  width: min(320px, 84vw);
+  aspect-ratio: 9 / 19;
+  border-radius: 48px;
+  padding: 12px;
+  background: linear-gradient(145deg, #2a2a30, #0f1014);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+  transform: translate3d(42vw, 0, 0) rotate(16deg);
+  will-change: transform;
+}
+
+.iphone-notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 40%;
+  height: 22px;
+  border-radius: 0 0 16px 16px;
+  background: #0b0b0f;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.iphone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 38px;
+  overflow: hidden;
+  background: linear-gradient(170deg, #f6d9e8, #f0a8c9);
+}
+
+.phone-screen-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.screen-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: "Bodoni Moda", serif;
+  font-size: clamp(28px, 5vw, 44px);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes float {
@@ -220,5 +297,14 @@ h1 {
 
   .hero-grid {
     padding: 130px 20px 40px;
+  }
+
+  .swillcal-showcase {
+    padding: 12vh 20px;
+    height: 200vh;
+  }
+
+  .iphone-shell {
+    width: min(280px, 86vw);
   }
 }
