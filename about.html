@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About - Poompalang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .about-stack {
+        display: grid;
+      }
+
+      .about-section {
+        min-height: 100vh;
+        padding: 14vh 32px;
+        display: grid;
+        grid-template-columns: minmax(180px, 0.32fr) minmax(0, 1fr);
+        gap: 28px;
+        align-content: center;
+        background: linear-gradient(180deg, rgba(255, 245, 250, 0.92), rgba(248, 214, 230, 0.95));
+      }
+
+      .about-section:nth-child(even) {
+        background: linear-gradient(180deg, rgba(252, 243, 248, 0.95), rgba(241, 208, 226, 0.95));
+      }
+
+      .about-title {
+        font-family: "Bodoni Moda", serif;
+        font-size: clamp(30px, 5vw, 52px);
+        line-height: 1.02;
+        align-self: start;
+      }
+
+      .about-data {
+        display: grid;
+        gap: 10px;
+        align-content: start;
+      }
+
+      .about-data p {
+        font-size: clamp(17px, 2.2vw, 22px);
+        line-height: 1.45;
+        max-width: 980px;
+      }
+
+
+      .skill-icons {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(92px, 1fr));
+        gap: 18px;
+        max-width: 760px;
+      }
+
+      .skill-icon {
+        aspect-ratio: 1 / 1;
+        border: 0;
+        background: transparent;
+        display: grid;
+        place-items: center;
+      }
+
+      .skill-icon img {
+        width: 84%;
+        height: 84%;
+        object-fit: contain;
+        display: block;
+        filter: grayscale(1) sepia(1) hue-rotate(280deg) saturate(280%) brightness(0.92);
+      }
+      .about-footer-line {
+        font-size: clamp(20px, 2.8vw, 30px);
+        letter-spacing: 1px;
+      }
+
+
+      .about-footer-quote {
+        font-family: "Bodoni Moda", serif;
+        font-size: clamp(32px, 5vw, 64px);
+        line-height: 1.06;
+        text-align: center;
+        max-width: 980px;
+      }      @media (max-width: 900px) {
+        .about-section {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .about-section {
+          min-height: 100vh;
+          padding: 12vh 20px;
+        }
+      }
+    </style>
+  </head>
+  <body class="subpage" id="top">
+    <nav class="nav" aria-label="Main">
+      <div class="logo">P.A.</div>
+      <div class="nav-links">
+        <a href="index.html#top">Home</a>
+        <a href="index.html#work">Work</a>
+        <a href="about.html">About</a>
+        <a href="mailto:poompalang8@gmail.com">Email</a>
+      </div>
+    </nav>
+
+    <main class="about-stack">
+      <section class="about-section">
+        <h2 class="about-title">Info of Me</h2>
+        <div class="about-data">
+          <p>Name: Poompalang Autid</p>
+          <p>Job: UX/UI Programmer</p>
+          <p>Experience: 4+ years</p>
+        </div>
+      </section>
+
+      <section class="about-section">
+        <h2 class="about-title">Role</h2>
+        <div class="about-data">
+          <p>UX/UI Programmer</p>
+          <p>Desc: ...</p>
+        </div>
+      </section>
+
+      <section class="about-section">
+        <h2 class="about-title">Skill</h2>
+        <div class="about-data">
+          <div class="skill-icons" aria-label="Skills">
+            <div class="skill-icon" title="HTML"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML icon" /></div>
+            <div class="skill-icon" title="CSS"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS icon" /></div>
+            <div class="skill-icon" title="JavaScript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript icon" /></div>
+            <div class="skill-icon" title="PHP"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP icon" /></div>
+            <div class="skill-icon" title="Flutter"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter icon" /></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section">
+        <h2 class="about-title">Worked Experience</h2>
+        <div class="about-data">
+          <p>UX/UI Programmer at: INZ Consulting Services Co.,Ltd. (2022 - present)</p>
+          <p>Desc: ...</p>
+        </div>
+      </section>
+
+      <section class="about-section">
+        <h2 class="about-title">Graduated</h2>
+        <div class="about-data">
+          <p>Bachelor of Engineering (Computer) at Thai-Nichi Institute of Technology (2018 - 2022)</p>
+          <p>Senior High School (science-math program) at Tepleela School (2014 - 2018)</p>
+        </div>
+      </section>
+
+      <section class="design-footer" aria-label="About footer">
+        <div class="design-stage">
+          <p class="about-footer-quote">"Mockup quote text will be added here later."</p>
+        </div>
+        <div class="design-footer-meta">
+          <p class="footer-signature">A.POOMPALANG &copy; 2026</p>
+          <a class="back-top" href="#top">Back to top</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
