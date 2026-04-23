@@ -7,12 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bodoni+Moda:wght@500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body class="subpage">
+    </head>
+  <body class="subpage dashboard-page" id="top">
     <nav class="nav" aria-label="Main">
       <div class="logo">P.A.</div>
       <div class="nav-links">
@@ -23,73 +23,258 @@
       </div>
     </nav>
 
-    <main class="subpage-shell"><section class="detail-hero">
-        <h1>Business Dashboard</h1>
-        <p class="detail-meta">Analytics and KPI tracking workspace</p>
-        <p>
-          Business Dashboard brings real-time metrics, trend analysis, and team performance
-          snapshots into a single executive-friendly view.
-        </p>
-      </section>
-
-      <section class="detail-grid">
-        <article class="detail-card">
-          <h2>What It Solves</h2>
-          <ul>
-            <li>Scattered KPI reporting across tools</li>
-            <li>Slow executive decision-making from outdated data</li>
-            <li>Manual compilation of weekly performance updates</li>
-          </ul>
-        </article>
-
-        <article class="detail-card">
-          <h2>Key Features</h2>
-          <ul>
-            <li>Live KPI tiles with alerts and thresholds</li>
-            <li>Revenue, funnel, and retention dashboards</li>
-            <li>Customizable filters by region and team</li>
-            <li>Shareable performance snapshots</li>
-          </ul>
-        </article>
-
-        <article class="detail-card">
-          <h2>Tech Direction</h2>
-          <ul>
-            <li>Data visualization-first layout system</li>
-            <li>Component-driven charts and insights panels</li>
-            <li>Optimized for large datasets and fast refresh</li>
-          </ul>
-        </article>
-      </section>
-
-      <section class="app-showcase business-dashboard-showcase" id="app-preview" data-motion="reveal">
-        <div class="showcase-copy">
-          <p class="eyebrow">App Preview</p>
-          <h2>Business Dashboard</h2>
-          <p class="lead">Scroll to reveal the notebook preview animation.</p>
-        </div>
-
-        <div class="notebook-stage" aria-hidden="true">
-          <div class="notebook-shell">
-            <div class="notebook-camera"></div>
-            <div class="notebook-screen">
-              <img src="business-dashboard-app.png" alt="Business dashboard app preview" class="notebook-screen-image" />
-              <div class="screen-fallback">Dashboard</div>
+    <main class="dashboard-shell">
+      <section class="dash-section dash-hero">
+        <div class="hero-stack">
+          <div class="hero-top">
+            <div class="hero-copy" data-reveal>
+              <p class="hero-kicker">Retro Futurism Interface</p>
+              <h1 class="hero-title">Business Dashboard</h1>
+              <p class="hero-intro">
+                A decision-focused workspace for teams who need live metrics, fast pattern reading, and a calmer way to move through dense business data.
+              </p>
+            </div>
+            <div class="hero-radar" data-reveal>
+              <div class="radar-ring"></div>
+              <div class="radar-line"></div>
+              <div class="radar-node a"></div>
+              <div class="radar-node b"></div>
+              <div class="radar-node c"></div>
             </div>
           </div>
-          <div class="notebook-base"></div>
+
+          <div class="metric-strip" data-reveal>
+            <article class="metric-card">
+              <span class="card-label">Revenue</span>
+              <strong>24.8%</strong>
+              <p>Growth viewed through a quick-scan metric tile system.</p>
+            </article>
+            <article class="metric-card">
+              <span class="card-label">Retention</span>
+              <strong>91%</strong>
+              <p>Stable trend visibility without chart overload.</p>
+            </article>
+            <article class="metric-card">
+              <span class="card-label">Alerts</span>
+              <strong>08</strong>
+              <p>Threshold changes highlighted for fast decisions.</p>
+            </article>
+            <article class="metric-card">
+              <span class="card-label">Regions</span>
+              <strong>12</strong>
+              <p>Filter-ready views across multiple business areas.</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section class="detail-card">
-        <h2>App Preview</h2>
-        <div class="preview-block">
-          <img src="business-dashboard-app.png" alt="Business dashboard app screenshot" />
-          <div class="preview-fallback">Dashboard</div>
+      <section class="dash-section dash-preview">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="section-kicker">03 / App Image</p>
+            <h2 class="section-title">Notebook Stage</h2>
+          </div>
+          <p class="section-summary">
+            This version uses a notebook-first composition so the dashboard reads like a command surface instead of a mobile product frame.
+          </p>
+        </div>
+
+        <div class="preview-grid" data-reveal>
+          <div class="notebook-stage">
+            <div class="notebook-shell">
+              <div class="notebook-lid">
+                <div class="notebook-screen">
+                  <img src="business-dashboard-app.png" alt="Business Dashboard app preview" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;" />
+                  <div class="screen-fallback dashboard-screen-fallback" hidden>
+                    <div class="fallback-stack">
+                      <span>Preview Pending</span>
+                      <strong>Dashboard</strong>
+                      <p>A built-in dashboard mockup is shown here until a real business dashboard image is added.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="notebook-base"></div>
+            </div>
+          </div>
+
+          <aside class="preview-side">
+            <article class="preview-sidecard">
+              <strong>Placement Shift</strong>
+              <p>This page keeps the same visual language as SwissCal and KareSync, but the preview is centered around a floating notebook instead of phone screens.</p>
+            </article>
+            <article class="preview-sidecard">
+              <strong>Motion Gimmick</strong>
+              <p>The perspective grid drifts below the page, the hero radar pulses, and the notebook rises with a soft suspended motion.</p>
+            </article>
+            <article class="preview-sidecard">
+              <strong>Screen Focus</strong>
+              <p>The larger surface area supports charts, tables, and KPI-heavy content better than a stacked mobile presentation.</p>
+            </article>
+          </aside>
         </div>
       </section>
+
+      <section class="dash-section dash-info">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="section-kicker">04 / Info Description</p>
+            <h2 class="section-title">Project Info</h2>
+          </div>
+          <p class="section-summary">
+            A concise breakdown of ownership, collaboration shape, and the executive-level reporting problem this product needed to solve.
+          </p>
+        </div>
+
+        <div class="info-grid" data-reveal>
+          <article class="info-card">
+            <span class="card-label">My Role</span>
+            <h3>UX/UI Programmer</h3>
+            <p>I shaped the information hierarchy, refined dashboard interactions, and translated analytics requirements into a front-end-ready interface system.</p>
+          </article>
+          <article class="info-card">
+            <span class="card-label">Teams</span>
+            <h3>Product + Data</h3>
+            <p>The work aligned product goals, reporting needs, and implementation constraints so key metrics stayed readable at speed.</p>
+          </article>
+          <article class="info-card">
+            <span class="card-label">Project Overview</span>
+            <h3>Analytics Workspace</h3>
+            <p>Business Dashboard was designed to centralize KPIs, trend analysis, and team performance views in a single decision-friendly system.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="dash-section dash-strategy">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="section-kicker">05 / UX Strategy</p>
+            <h2 class="section-title">Decision Logic</h2>
+          </div>
+          <p class="section-summary">
+            The UX strategy focused on lowering analysis friction, clarifying what changed, and helping users move from insight to action without getting lost in data density.
+          </p>
+        </div>
+
+        <div class="strategy-grid" data-reveal>
+          <article class="strategy-card">
+            <span class="card-label">The Problem</span>
+            <h3>Important metrics were scattered</h3>
+            <p>Executives and teams needed to compare KPIs across tools, which slowed reporting, buried thresholds, and made trend reading inconsistent.</p>
+          </article>
+          <article class="strategy-card">
+            <span class="card-label">Solution</span>
+            <h3>Prioritized signal over volume</h3>
+            <p>The interface pushed critical KPIs forward, structured filters carefully, and made trend changes easier to see in fewer steps.</p>
+          </article>
+        </div>
+
+        <div class="journey-grid" data-reveal>
+          <article class="journey-card">
+            <span class="card-label">User Journey</span>
+            <h3>Scan</h3>
+            <p>Open the dashboard and identify the highest-priority change within seconds.</p>
+          </article>
+          <article class="journey-card">
+            <span class="card-label">User Journey</span>
+            <h3>Compare</h3>
+            <p>Move between filters, teams, or regions without losing the main context.</p>
+          </article>
+          <article class="journey-card">
+            <span class="card-label">User Journey</span>
+            <h3>Decide</h3>
+            <p>Use trend and threshold feedback to act on risks or opportunities faster.</p>
+          </article>
+          <article class="journey-card">
+            <span class="card-label">Key UX Principles</span>
+            <h3>Clarity</h3>
+            <p>Hierarchy, contrast of importance, stable filtering, and minimal cognitive overhead for KPI-heavy screens.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="dash-section dash-wireframes">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="section-kicker">06 / Wireframes</p>
+            <h2 class="section-title">Flow + UI Boards</h2>
+          </div>
+          <p class="section-summary">
+            The wireframe boards stay in the same order but sit side by side here, matching the wider notebook-oriented product context.
+          </p>
+        </div>
+
+        <div class="wireframe-grid">
+          <article class="wireframe-card" data-reveal>
+            <span class="card-label">User Flow</span>
+            <h3>Decision Flow</h3>
+            <div class="wireframe-media">
+              <img src="business-dashboard-flow.png" alt="Business Dashboard user flow" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;" />
+              <div class="wireframe-fallback flow" hidden>
+                <div class="wireframe-stack">
+                  <span>Mock Board</span>
+                  <strong>User Flow</strong>
+                  <p>This placeholder stays visible until `business-dashboard-flow.png` is added.</p>
+                </div>
+                <div class="flow-matrix" aria-hidden="true"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="wireframe-card" data-reveal>
+            <span class="card-label">UI Design</span>
+            <h3>Dashboard System</h3>
+            <div class="wireframe-media">
+              <img src="business-dashboard-ui.png" alt="Business Dashboard UI design" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;" />
+              <div class="wireframe-fallback ui" hidden>
+                <div class="wireframe-stack">
+                  <span>Mock Board</span>
+                  <strong>UI Design</strong>
+                  <p>This placeholder stays visible until `business-dashboard-ui.png` is added.</p>
+                </div>
+                <div class="ui-matrix" aria-hidden="true">
+                  <span class="ui-band a"></span>
+                  <span class="ui-band b"></span>
+                  <span class="ui-band c"></span>
+                  <span class="ui-band d"></span>
+                  <span class="ui-band e"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="dash-next">
+        <a class="next-link" href="swisscal.html" data-reveal>
+          <p class="section-kicker">07 / Next App</p>
+          <h2 class="next-app-title">SwissCal</h2>
+          <p class="next-note">Open next project</p>
+        </a>
+      </section>
+
+      <footer class="dashboard-footer">
+        <div class="footer-grid">
+          <div></div>
+          <div class="footer-license">A.POOMPALANG &copy; 2026</div>
+          <a class="footer-top" href="#top">Go To Top</a>
+        </div>
+      </footer>
     </main>
 
-    <script src="script.js"></script>
+    <script>
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            }
+          });
+        },
+        { threshold: 0.18 }
+      );
+
+      document.querySelectorAll("[data-reveal]").forEach((node) => revealObserver.observe(node));
+    </script>
   </body>
 </html>

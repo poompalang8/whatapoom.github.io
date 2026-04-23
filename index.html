@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pink Pastel Portfolio</title>
+    <title>Poompalang Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bodoni+Moda:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
+    </head>
+  <body class="index-future">
     <div class="page">
       <header class="hero" id="top">
         <nav class="nav">
@@ -27,67 +27,72 @@
 
         <div class="hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Frontend Developer โ€ข UI Designer</p>
-            <h1>Modern. Soft. Unmistakably you.</h1>
+            <!-- <p class="eyebrow">Retro Futurism Portfolio</p> -->
+            <h1><span>UX/UI</span><span>Programmer</span></h1>
             <p class="lead">
-              I build delightful web experiences with crisp UX, clean code, and
-              a pastel-pink aesthetic that feels confident, not cute.
+              Design Systems That Move With You.
             </p>
             <div class="cta-row">
               <a class="btn primary" href="mailto:poompalang8@gmail.com">Email Me</a>
+              <span class="hero-signal">UX/UI Programmer</span>
             </div>
             <div class="hero-meta">
-              <span>Based in Bangkok</span>
+              <span>4+ Years Experience</span>
             </div>
           </div>
 
           <div class="hero-card">
-            <div class="avatar"></div>
+            <div class="hero-card-top">
+              <div class="avatar"></div>
+            </div>
             <div class="hero-card-body">
               <h2>Poompalang Autid</h2>
-              <p>UX-UI Frontend Programmer</p>
+              <p>UX/UI Programmer focused on polished interfaces, interaction logic, and front-end implementation.</p>
               <div class="tag-row">
                 <span>HTML</span>
                 <span>CSS</span>
-                <span>JS</span>
+                <span>JavaScript</span>
                 <span>Flutter</span>
               </div>
             </div>
           </div>
         </div>
       </header>
+
       <section class="work-folders" id="work">
         <div class="work-header">
           <p class="eyebrow">Selected Work</p>
           <h2>Folders of Experiments</h2>
-          <p class="lead">Hover a folder to peek inside each project.</p>
+          <p class="lead">A set of interface experiments exploring motion, mood, and digital character.</p>
         </div>
 
-                <div class="folder-stack" aria-label="Project folders">
-          <a class="folder-card" href="business-dashboard.html" style="--offset-x: -18%; --offset-y: 8%;">
-            <div class="folder-tab">Business Dashboard</div>
+        <div class="folder-stack" aria-label="Project folders">
+          <a class="folder-card" href="swisscal.html">
+            <div class="folder-tab">SwissCal</div>
             <div class="folder-body">
-              <img src="work-3.jpg" alt="Business dashboard project preview" />
+              <img src="assets/swisscal/compare.png" alt="SwissCal project preview" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;" />
+              <div class="folder-preview-fallback" hidden>SwissCal</div>
             </div>
           </a>
 
-          <a class="folder-card" href="karesync.html" style="--offset-x: 0%; --offset-y: -6%;">
+          <a class="folder-card" href="karesync.html">
             <div class="folder-tab">KareSync</div>
             <div class="folder-body">
-              <img src="work-2.jpg" alt="KareSync project preview" />
+              <img src="assets/karesync/dashboard.png" alt="KareSync project preview" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;" />
+              <div class="folder-preview-fallback" hidden>KareSync</div>
             </div>
           </a>
 
-          <a class="folder-card" href="swillcal.html" style="--offset-x: 18%; --offset-y: 10%;">
-            <div class="folder-tab">SwillCal</div>
+          <a class="folder-card" href="business-dashboard.html">
+            <div class="folder-tab">Business Dashboard</div>
             <div class="folder-body">
-              <img src="work-1.jpg" alt="SwillCal project preview" />
+              <div class="folder-preview-fallback dashboard-fallback">Business Dashboard</div>
             </div>
           </a>
         </div>
-      
       </section>
-                  <section class="design-footer" aria-label="Design statement">
+
+      <section class="design-footer" aria-label="Design statement">
         <div class="design-stage">
           <a class="design-target" href="about.html" aria-label="Go to About page">
             <span class="design-text">Design That Understands You.</span>
@@ -107,18 +112,16 @@
               <span class="cursor-star star-a"></span>
               <span class="cursor-star star-b"></span>
             </div>
-                    </a>
+          </a>
         </div>
+
         <div class="design-footer-meta">
+          <div></div>
           <p class="footer-signature">A.POOMPALANG &copy; 2026</p>
           <a class="back-top" href="#top">Back to top</a>
         </div>
-      </section>    </div>
+      </section>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
-
-
-
-
-
