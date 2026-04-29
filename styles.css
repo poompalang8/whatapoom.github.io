@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --pink-100: #fef2f7;
   --pink-500: #d88ab6;
   --rose-700: #7a3a52;
@@ -827,13 +827,13 @@ body.subpage {
 }
 /* Extra scroll space for iPhone slide sections */
 .swisscal-showcase,
-.karesync-showcase {
+.medhealth-showcase {
   min-height: 130vh;
 }
 
 @media (max-width: 720px) {
   .swisscal-showcase,
-  .karesync-showcase {
+  .medhealth-showcase {
     min-height: 120vh;
   }
 }
@@ -2578,9 +2578,9 @@ body.subpage {
         }
       }
 
-/* karesync.html */
+/* medhealth.html */
 
-.karesync-page {
+.medhealth-page {
         --shell-pad: clamp(20px, 3vw, 32px);
         --panel: rgba(255, 247, 251, 0.76);
         --line: rgba(122, 58, 82, 0.16);
@@ -2590,7 +2590,7 @@ body.subpage {
           linear-gradient(180deg, #fff8fb 0%, #fde8f2 40%, #f7d5e6 100%);
       }
 
-      .karesync-page::before {
+      .medhealth-page::before {
         content: "";
         position: fixed;
         inset: 0;
@@ -2606,7 +2606,7 @@ body.subpage {
         z-index: 0;
       }
 
-      .karesync-page .nav {
+      .medhealth-page .nav {
         position: fixed;
         top: 0;
         left: 0;
@@ -2618,7 +2618,7 @@ body.subpage {
         backdrop-filter: blur(14px);
       }
 
-      .karesync-page .nav .logo {
+      .medhealth-page .nav .logo {
         font-family: "Audiowide", sans-serif;
         font-size: 22px;
         letter-spacing: 0.18em;
@@ -2626,14 +2626,14 @@ body.subpage {
         color: var(--rose-700);
       }
 
-      .karesync-page .nav .nav-links {
+      .medhealth-page .nav .nav-links {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
         gap: 10px;
       }
 
-      .karesync-page .nav .nav-links a {
+      .medhealth-page .nav .nav-links a {
         padding: 10px 14px;
         border-radius: 999px;
         border: 1px solid rgba(122, 58, 82, 0.16);
@@ -2645,13 +2645,13 @@ body.subpage {
         transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease);
       }
 
-      .karesync-page .nav .nav-links a:hover {
+      .medhealth-page .nav .nav-links a:hover {
         transform: translateY(-2px);
         box-shadow: 0 16px 32px rgba(122, 58, 82, 0.14);
         background: rgba(255, 255, 255, 0.88);
       }
 
-      .karesync-shell {
+      .medhealth-shell {
         position: relative;
         z-index: 1;
         padding-top: 88px;
@@ -3347,12 +3347,12 @@ body.subpage {
       }
 
       @media (max-width: 720px) {
-        .karesync-page .nav {
+        .medhealth-page .nav {
           position: fixed;
           align-items: flex-start;
         }
 
-        .karesync-shell {
+        .medhealth-shell {
           padding-top: 116px;
         }
 
@@ -4092,22 +4092,43 @@ body.subpage {
 
 
 
-.karesync-page .hero-title {
+.medhealth-page .hero-title {
   font-size: clamp(52px, 9vw, 132px);
   max-width: 100%;
 }
 
 
-.karesync-page .preview-layout {
+.medhealth-page .preview-layout {
   display: block;
 }
 
-.karesync-page .device-stage {
+.medhealth-page .device-stage {
   width: 100%;
   max-width: none;
 }
 
-.karesync-page .device-cluster {
+.medhealth-page .device-cluster {
   width: 100%;
+}
+
+
+
+.medhealth-page .hero-title {
+  font-size: 88px;
+  line-height: 0.95;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 900px) {
+  .medhealth-page .hero-title {
+    font-size: 64px;
+  }
+}
+
+@media (max-width: 560px) {
+  .medhealth-page .hero-title {
+    font-size: 42px;
+  }
 }
 
