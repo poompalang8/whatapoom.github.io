@@ -3,185 +3,178 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SwissCal - App Details</title>
+    <meta name="description" content="SwissCal — a life-service calculator for everyday decisions." />
+    <title>SwissCal — Life-service calculator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bodoni+Moda:wght@500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bodoni+Moda:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
-    </head>
-  <body class="subpage swisscal-page" id="top">
-    <nav class="nav" aria-label="Main">
+    <style>
+      .swisscal-case { --coral: #d88ab6; --rose: #7a3a52; --ink: #2a1c22; --cream: #fff4f9; --line: rgba(122,58,82,.17); color: var(--ink); background: radial-gradient(circle at top left, #fff4f9 0%, #fde7f1 35%, #f8d6e6 70%, #f3c7da 100%); font-family: "Space Grotesk", sans-serif; }
+      .swisscal-case *, .swisscal-case *::before, .swisscal-case *::after { box-sizing: border-box; }
+      .swisscal-case .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 18px clamp(20px, 4vw, 48px);
+        backdrop-filter: blur(14px);
+        background: rgba(255, 250, 252, 0.84);
+        border-bottom: 1px solid rgba(216, 138, 182, 0.26);
+        font-family: "Space Grotesk", sans-serif;
+      }
+      .swisscal-case .nav .logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Audiowide", sans-serif;
+        font-size: 22px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--rose);
+      }
+      .swisscal-case .nav .logo::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f9a9cf 0%, #d88ab6 100%);
+        box-shadow: 0 0 0 4px rgba(216, 138, 182, 0.12);
+      }
+      .swisscal-case .nav .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+      .swisscal-case .nav .nav-links a {
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(122, 58, 82, 0.16);
+        background: rgba(255, 247, 251, 0.74);
+        box-shadow: 0 14px 28px rgba(122, 58, 82, 0.08);
+        font-family: "Audiowide", sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease);
+      }
+      .swisscal-case .nav .nav-links a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 32px rgba(122, 58, 82, 0.14);
+        background: rgba(255, 255, 255, 0.88);
+      }
+      .case-shell { overflow: hidden; }
+      .case-hero { min-height: 740px; padding: 148px clamp(24px,7vw,112px) 74px; position: relative; background: radial-gradient(circle at 86% 20%, rgba(255,255,255,.55), transparent 30%), linear-gradient(125deg, #fff7fb 0%, #f8d2e4 55%, #e9b2ce 100%); color: var(--rose); }
+      .case-hero::before { content: "SWISSCAL"; position: absolute; right: -3vw; bottom: -7vw; color: rgba(122,58,82,.09); font-weight: 800; font-size: clamp(110px,22vw,340px); letter-spacing: -.09em; pointer-events: none; }
+      .case-hero-grid { max-width: 1240px; margin: auto; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 44px; position: relative; }
+      .case-kicker, .section-number, .feature-index { font: 500 11px "Audiowide", sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+      .case-kicker { opacity: .78; margin-bottom: 20px; }
+      .case-title { max-width: 680px; margin: 0; font-family: "Audiowide", sans-serif; font-size: clamp(62px,9vw,126px); line-height: .88; letter-spacing: -.085em; text-transform: uppercase; text-shadow: -2px -2px 0 rgba(122, 58, 82, 0.14), 2px 2px 0 rgba(216, 138, 182, 0.34), 0 0 30px rgba(216, 138, 182, 0.34); }
+      .case-intro { max-width: 540px; margin: 30px 0 0; font-size: clamp(17px,2vw,22px); line-height: 1.5; }
+      .case-stats { display: flex; gap: 34px; margin-top: 40px; }
+      .case-stats div { display: grid; gap: 4px; }
+      .case-stats strong { font-size: 25px; line-height: 1; }
+      .case-stats span { font: 11px "Audiowide", sans-serif; text-transform: uppercase; opacity: .76; }
+      .hero-devices { min-height: 475px; position: relative; }
+      .hero-phone { position: absolute; width: min(190px, 31vw); padding: 7px; background: var(--rose); border-radius: 29px; box-shadow: 0 24px 45px rgba(122,58,82,.28); transform-origin: bottom center; }
+      .hero-phone img { width: 100%; display: block; border-radius: 23px; }
+      .hero-phone::after { content: ""; position:absolute; width: 32%; height: 4px; border-radius: 20px; background:var(--rose); top: 10px; left:34%; }
+      .hero-phone.one { left: 4%; top: 80px; transform: rotate(-12deg); }
+      .hero-phone.two { left: 35%; top: 0; z-index: 2; transform: rotate(4deg); }
+      .hero-phone.three { right: 0; top: 110px; transform: rotate(13deg); }
+      .case-section { padding: clamp(70px,10vw,144px) clamp(24px,7vw,112px); }
+      .section-head { max-width: 1240px; margin: 0 auto 46px; display:flex; align-items:end; justify-content:space-between; gap:20px; }
+      .section-head h2 { margin: 12px 0 0; font-family: "Audiowide", sans-serif; font-size: clamp(38px,5vw,70px); line-height:.95; letter-spacing:-.065em; text-transform: uppercase; color: var(--rose); text-shadow: -1px -1px 0 rgba(122, 58, 82, 0.12), 1px 1px 0 rgba(216, 138, 182, 0.28); }
+      .section-note { max-width: 360px; margin: 0; line-height:1.55; color:#56545a; }
+      .overview { background: linear-gradient(180deg, #fff8fb, #f4d4e3); }
+      .overview-grid { max-width:1240px; margin:auto; display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; }
+      .overview-copy { padding:clamp(28px,4vw,56px); background:rgba(255,247,251,.9); border:1px solid var(--line); border-radius:24px; }
+      .overview-copy h3 { max-width:660px; margin:15px 0 24px; font-family:"Audiowide", sans-serif; font-size:clamp(27px,3.5vw,46px); line-height:1.08; letter-spacing:-.045em; text-transform: uppercase; color: var(--rose); }
+      .overview-copy p { max-width:670px; color:#56545a; line-height:1.7; }
+      .overview-details { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+      .detail { min-height:170px; padding:24px; background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(253,231,241,.94)); color:var(--ink); border:1px solid var(--line); border-radius:22px; }
+      .detail strong { display:block; margin-top:28px; font-size:18px; }
+      .features { background:#fff8fb; }
+      .feature-grid { max-width:1240px; margin:auto; display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line); }
+      .feature { min-height:370px; padding:22px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); display:flex; flex-direction:column; background:rgba(255,247,251,.9); transition:background .25s, transform .25s; }
+      .feature:hover { background:#fff0f6; transform:translateY(-5px); }
+      .feature-top { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+      .feature-icon { width:37px; height:37px; display:grid; place-items:center; background:var(--coral); color:#fff; border-radius:50%; font-size:18px; }
+      .feature h3 { margin:24px 0 10px; font-family:"Audiowide", sans-serif; font-size:25px; letter-spacing:-.03em; text-transform: uppercase; color: var(--rose); }
+      .feature p { margin:0; color:#5e5c60; font-size:14px; line-height:1.6; }
+      .feature img { width:108px; margin:18px auto -22px; border-radius:14px 14px 0 0; box-shadow:0 12px 22px rgba(28,29,36,.18); }
+      .screens { background:linear-gradient(135deg, #7a3a52, #b4628f); color:#fff; }
+      .screens .section-note { color:rgba(255,255,255,.68); }
+      .screen-grid { max-width:1240px; margin:auto; display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+      .screen-card { background:#363744; border-radius:20px; padding:10px; overflow:hidden; }
+      .screen-card img { width:100%; display:block; border-radius:13px; }
+      .screen-card figcaption { padding:14px 8px 5px; font:11px "Audiowide",sans-serif; letter-spacing:.08em; color:rgba(255,255,255,.68); }
+      .themes { background:#f3eee8; }
+      .theme-grid { max-width:1240px; margin:auto; display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+      .theme-card { margin:0; overflow:hidden; border-radius:18px; background:#fff; border:1px solid var(--line); }
+      .theme-card img { width:100%; display:block; }
+      .theme-card figcaption { padding:12px; font:11px "Audiowide",sans-serif; letter-spacing:.04em; }
+      .case-next { padding:72px clamp(24px,7vw,112px); background:var(--coral); color:#fff; }
+      .case-next a { max-width:1240px; margin:auto; display:block; }
+      .case-next h2 { margin:14px 0 0; font-family:"Audiowide", sans-serif; font-size:clamp(42px,7vw,92px); letter-spacing:-.06em; line-height:.94; text-transform: uppercase; text-shadow: -2px -2px 0 rgba(122, 58, 82, 0.14), 2px 2px 0 rgba(216, 138, 182, 0.34), 0 0 30px rgba(216, 138, 182, 0.34); }
+      .case-next span { display:inline-block; margin-top:24px; padding:11px 17px; border:1px solid rgba(255,255,255,.6); border-radius:100px; font:11px "Audiowide",sans-serif; text-transform:uppercase; letter-spacing:.08em; }
+      @media (max-width:900px) { .case-hero-grid,.overview-grid { grid-template-columns:1fr; } .hero-devices { max-width:520px; width:100%; margin:auto; min-height:390px; } .feature-grid { grid-template-columns:repeat(2,1fr); } .theme-grid { grid-template-columns:repeat(3,1fr); } }
+      @media (max-width:580px) { .case-hero { min-height:auto; padding-top:130px; } .case-stats { gap:18px; } .hero-devices { min-height:325px; } .hero-phone { width:140px; border-radius:22px; } .hero-phone img { border-radius:17px; } .hero-phone.one { left:0; top:62px; } .hero-phone.two { left:31%; } .hero-phone.three { top:75px; } .section-head { display:block; } .section-note { margin-top:20px; } .overview-details,.feature-grid { grid-template-columns:1fr; } .detail { min-height:125px; } .detail strong { margin-top:18px; } .screen-grid { grid-template-columns:repeat(2,1fr); gap:12px; } .theme-grid { grid-template-columns:repeat(2,1fr); } }
+    </style>
+  </head>
+  <body class="subpage swisscal-case" id="top">
+    <nav class="nav" aria-label="Main navigation">
       <div class="logo">P.U.</div>
-      <div class="nav-links">
-        <a href="index.html#top">Home</a>
-        <a href="index.html#work">Work</a>
-        <a href="about.html">About</a>
-        <a href="mailto:poompalang8@gmail.com">Email</a>
-      </div>
+      <div class="nav-links"><a href="index.html#top">Home</a><a href="index.html#work">Work</a><a href="about.html">About</a><a href="mailto:poompalang8@gmail.com">Email</a></div>
     </nav>
-
-    <main class="swisscal-shell">
-      <section class="swiss-section swiss-hero">
-        <div class="hero-panel">
-          <div class="hero-copy" data-reveal>
-            <!-- <p class="hero-kicker">Retro Futurism Interface</p> -->
-            <h1 class="hero-title">SwissCal</h1>
-            <p class="hero-intro">
-              A scheduling experience shaped like a soft signal machine: precise information,
-              romantic motion, and a calmer way to navigate time-heavy routines.
-            </p>
-            <div class="signal-row">
-              <span class="signal-chip">Calendar System</span>
-              <span class="signal-chip">Pink Tone Grid</span>
-              <span class="signal-chip">Motion Guided UI</span>
-            </div>
-          </div>
-</div>
-      </section>
-
-      <section class="swiss-section swiss-preview">
-        <div class="section-head" data-reveal>
+    <main class="case-shell">
+      <section class="case-hero">
+        <div class="case-hero-grid">
           <div>
-            <p class="section-kicker">03 / App Image</p>
-            <h2 class="section-title">Interface Signal</h2>
+            <p class="case-kicker">01 / Everyday utility, one app</p>
+            <h1 class="case-title">SwissCal<br />Life-service calculator.</h1>
+            <p class="case-intro">A friendly collection of practical calculators that turns small daily decisions—from splitting a bill to checking a health ratio—into quick, understandable answers.</p>
+            <div class="case-stats"><div><strong>8</strong><span>Utility tools</span></div><div><strong>9</strong><span>Colour themes</span></div><div><strong>1</strong><span>Simple home</span></div></div>
           </div>
-        </div>
-
-        <div class="image-stage" data-reveal>
-          <div class="device-capsule">
-            <div class="device-grid" aria-hidden="true"></div>
-            <div class="device-shell">
-              <div class="device-screen">
-                <img src="assets/swisscal/compare.png" alt="SwissCal app preview" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;" />
-                <div class="screen-fallback-large" hidden>
-                  <div class="fallback-stack">
-                    <span>Preview Pending</span>
-                    <strong>SwissCal</strong>
-                    <p>Drop in `swisscal-app.png` to replace this placeholder screen.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="hero-devices" aria-label="SwissCal app previews"><div class="hero-phone one"><img src="assets/swisscal/ui/bill.jpg" alt="SwissCal calculator home screen" /></div><div class="hero-phone two"><img src="assets/swisscal/ui/compare.jpg" alt="SwissCal price comparison screen" /></div><div class="hero-phone three"><img src="assets/swisscal/ui/timer.jpg" alt="SwissCal haptic timer screen" /></div></div>
         </div>
       </section>
-
-      <section class="swiss-section swiss-info">
-        <div class="section-head" data-reveal>
-          <div>
-            <p class="section-kicker">04 / Info Description</p>
-            <h2 class="section-title">Project Info</h2>
-          </div>
-        </div>
-
-        <div class="info-grid" data-reveal>
-          <article class="info-card">
-            <span class="card-label">My Role</span>
-            <h3>Software Developer</h3>
-            <!-- <p>I shaped the interaction structure, feature grouping, and interface behavior so multiple calculation tools could stay clear and easy to use in one app.</p> -->
-          </article>
-          <article class="info-card">
-            <span class="card-label">Teams</span>
-            <h3>Product + UX/UI</h3>
-            <!-- <p>The workflow connected practical user problems, feature planning, and interface simplification so the app stayed useful even as more tools were added.</p> -->
-          </article>
-          <article class="info-card">
-            <span class="card-label">Project Overview</span>
-            <h3>Calculation Utility App</h3>
-            <!-- <p>SwissCal started from a shopping problem: helping users compare prices and calculate totals more easily, then expanded into bill, discount, VAT/GST, exchange rate, WHTR, BMI, haptic timer, and more.</p> -->
-          </article>
+      <section class="case-section overview">
+        <div class="section-head"><div><p class="section-number">02 / App description</p><h2>Everyday tools in one app.</h2></div><p class="section-note">SwissCal keeps calculations, results, and themes simple.</p></div>
+        <div class="overview-grid"><article class="overview-copy"><p class="section-number">App description</p><h3>SwissCal is a pocket utility for money, health, and time.</h3><p>It brings together bill splitting, price comparison, discount checks, VAT or GST, BMI, WHtR, exchange rates, and a haptic timer in one Flutter app.</p></article><div class="overview-details"><article class="detail"><p class="section-number">Everyday money</p><strong>Bill split, compare price, discount, VAT/GST</strong></article><article class="detail"><p class="section-number">Health tools</p><strong>BMI and WHtR</strong></article><article class="detail"><p class="section-number">Travel helper</p><strong>Exchange rate conversion</strong></article><article class="detail"><p class="section-number">Focus mode</p><strong>Haptic timer and theme support</strong></article></div></div>
+      </section>
+      <section class="case-section features">
+        <div class="section-head"><div><p class="section-number">03 / Core tools</p><h2>A calculator for the moment.</h2></div><p class="section-note">The app is designed around situations rather than formulas, so people can move from a real-life need to a useful result with less mental work.</p></div>
+        <div class="feature-grid">
+          <article class="feature"><div class="feature-top"><span class="feature-index">01</span><span class="feature-icon">↗</span></div><h3>Bill split</h3><p>Divides a shared bill between people and helps account for service charges, so a group can settle up without doing the arithmetic by hand.</p><img src="assets/swisscal/ui/bill.jpg" alt="Bill split calculator interface" /></article>
+          <article class="feature"><div class="feature-top"><span class="feature-index">02</span><span class="feature-icon">⇄</span></div><h3>Compare price</h3><p>Compares the unit price of different pack sizes. It makes the better-value choice clear when products are not sold in equal quantities.</p><img src="assets/swisscal/ui/compare.jpg" alt="Price comparison interface" /></article>
+          <article class="feature"><div class="feature-top"><span class="feature-index">03</span><span class="feature-icon">%</span></div><h3>Discount</h3><p>Calculates the sale price and savings from a percentage discount, making promotions easier to check before buying.</p><img src="assets/swisscal/ui/discount.jpg" alt="Discount calculator interface" /></article>
+          <article class="feature"><div class="feature-top"><span class="feature-index">04</span><span class="feature-icon">+</span></div><h3>VAT / GST</h3><p>Adds or removes tax from an amount so the pre-tax price, tax amount, and final total are easy to understand.</p><img src="assets/swisscal/ui/vat.jpg" alt="VAT and GST calculator interface" /></article>
+          <article class="feature"><div class="feature-top"><span class="feature-index">05</span><span class="feature-icon">BMI</span></div><h3>BMI</h3><p>Uses height and weight to estimate body mass index, offering a quick, general reference point for a person’s weight range.</p><img src="assets/swisscal/ui/whtr.jpg" alt="Health calculator interface" /></article>
+          <article class="feature"><div class="feature-top"><span class="feature-index">06</span><span class="feature-icon">WH</span></div><h3>WHtR</h3><p>Calculates waist-to-height ratio, a simple screening measure that puts waist size in the context of a person’s height.</p><img src="assets/swisscal/ui/whtr.jpg" alt="Waist-to-height ratio calculator interface" /></article>
+          <article class="feature"><div class="feature-top"><span class="feature-index">07</span><span class="feature-icon">¥</span></div><h3>Exchange rate</h3><p>Converts between currencies using a clear amount-and-rate layout—handy for travel, online shopping, or quick cost estimates.</p><img src="assets/swisscal/ui/exchange.jpg" alt="Exchange rate calculator interface" /></article>
+          <article class="feature"><div class="feature-top"><span class="feature-index">08</span><span class="feature-icon">◷</span></div><h3>Haptic timer</h3><p>Runs a focused timer with tactile feedback, allowing users to keep track of an interval without constantly looking at the screen.</p><img src="assets/swisscal/ui/timer.jpg" alt="Haptic timer interface" /></article>
         </div>
       </section>
-<section class="swiss-section swiss-wireframes">
-        <div class="section-head" data-reveal>
-          <div>
-            <p class="section-kicker">05 / Wireframes</p>
-            <h2 class="section-title">Flow + UI Boards</h2>
-          </div>
-        </div>
-
-        <div class="wireframe-stack-layout">
-          <article class="wireframe-card" data-reveal>
-            <span class="card-label">User Flow</span>
-            <h3>Feature Flow</h3>
-            <div class="wireframe-media">
-              <img src="swisscal-flow.png" alt="SwissCal user flow" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;" />
-              <div class="wireframe-fallback flow" hidden>
-                <div class="wireframe-stack">
-                  <span>Mock Board</span>
-                  <strong>User Flow</strong>
-                  <p>This large placeholder board stands in until `swisscal-flow.png` is added.</p>
-                </div>
-                <div class="flow-lattice" aria-hidden="true"></div>
-              </div>
-            </div>
-          </article>
-
-          <article class="wireframe-card" data-reveal>
-            <span class="card-label">UI Design</span>
-            <h3>Calculator UI System</h3>
-            <div class="wireframe-media">
-              <img src="swisscal-ui.png" alt="SwissCal UI design" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;" />
-              <div class="wireframe-fallback ui" hidden>
-                <div class="wireframe-stack">
-                  <span>Mock Board</span>
-                  <strong>UI Design</strong>
-                  <p>This large placeholder board stands in until `swisscal-ui.png` is added.</p>
-                </div>
-                <div class="ui-lattice" aria-hidden="true">
-                  <span class="ui-bar a"></span>
-                  <span class="ui-bar b"></span>
-                  <span class="ui-bar c"></span>
-                  <span class="ui-bar d"></span>
-                  <span class="ui-bar e"></span>
-                </div>
-              </div>
-            </div>
-          </article>
+      <section class="case-section screens">
+        <div class="section-head"><div><p class="section-number">04 / Interface gallery</p><h2>One visual language,<br />many tasks.</h2></div><p class="section-note">The UI keeps the same essential calculator rhythm across specialized tools: a readable result area, focused fields, and a numeric keypad ready for the next input.</p></div>
+        <div class="screen-grid">
+          <figure class="screen-card"><img src="assets/swisscal/ui/bill.jpg" alt="Bill calculator UI" /><figcaption>Bill calculator</figcaption></figure><figure class="screen-card"><img src="assets/swisscal/ui/menu.jpg" alt="SwissCal menu UI" /><figcaption>Tool menu</figcaption></figure><figure class="screen-card"><img src="assets/swisscal/ui/compare.jpg" alt="Compare price UI" /><figcaption>Compare price</figcaption></figure><figure class="screen-card"><img src="assets/swisscal/ui/discount.jpg" alt="Discount UI" /><figcaption>Discount</figcaption></figure><figure class="screen-card"><img src="assets/swisscal/ui/vat.jpg" alt="VAT GST UI" /><figcaption>VAT / GST</figcaption></figure><figure class="screen-card"><img src="assets/swisscal/ui/whtr.jpg" alt="WHtR UI" /><figcaption>WHtR</figcaption></figure><figure class="screen-card"><img src="assets/swisscal/ui/exchange.jpg" alt="Currency UI" /><figcaption>Exchange rate</figcaption></figure><figure class="screen-card"><img src="assets/swisscal/ui/timer.jpg" alt="Timer UI" /><figcaption>Haptic timer</figcaption></figure><figure class="screen-card"><img src="assets/swisscal/ui/setting.jpg" alt="SwissCal settings UI" /><figcaption>Settings</figcaption></figure>
         </div>
       </section>
-
-      <section class="swiss-next">
-        <a class="next-link" href="medhealth.html" data-reveal>
-          <p class="section-kicker">06 / Next App</p>
-          <h2 class="next-app-title">Medical & Health Application</h2>
-          <p class="next-note">Open next project</p>
-        </a>
-      </section>
-
-      <footer class="swiss-footer">
-        <div class="footer-grid">
-          <div></div>
-          <div class="footer-license">A.POOMPALANG &copy; 2026</div>
-          <a class="footer-top" href="#top">Go To Top</a>
+      <section class="case-section themes">
+        <div class="section-head"><div><p class="section-number">05 / Personal themes</p><h2>Pick a colour<br />that feels right.</h2></div><p class="section-note">Theme options let the utility feel personal without changing the core interaction. Each palette preserves the same clear hierarchy and familiar layout.</p></div>
+        <div class="theme-grid">
+          <figure class="theme-card"><img src="assets/swisscal/theme/S__39862279_0.jpg" alt="Coral SwissCal theme" /><figcaption>Coral</figcaption></figure><figure class="theme-card"><img src="assets/swisscal/theme/S__39862287_0.jpg" alt="Dark SwissCal theme" /><figcaption>Midnight</figcaption></figure><figure class="theme-card"><img src="assets/swisscal/theme/S__39862288_0.jpg" alt="Ice SwissCal theme" /><figcaption>Ice</figcaption></figure><figure class="theme-card"><img src="assets/swisscal/theme/S__39862289_0.jpg" alt="Blush SwissCal theme" /><figcaption>Blush</figcaption></figure><figure class="theme-card"><img src="assets/swisscal/theme/S__39862290_0.jpg" alt="Blue SwissCal theme" /><figcaption>Ocean</figcaption></figure><figure class="theme-card"><img src="assets/swisscal/theme/S__39862291_0.jpg" alt="Purple SwissCal theme" /><figcaption>Plum</figcaption></figure><figure class="theme-card"><img src="assets/swisscal/theme/S__39862292_0.jpg" alt="Mint SwissCal theme" /><figcaption>Mint</figcaption></figure><figure class="theme-card"><img src="assets/swisscal/theme/S__39862293_0.jpg" alt="Silver SwissCal theme" /><figcaption>Cloud</figcaption></figure><figure class="theme-card"><img src="assets/swisscal/theme/S__39862294_0.jpg" alt="Rose SwissCal theme" /><figcaption>Rose</figcaption></figure>
         </div>
-      </footer>
+      </section>
+      <section class="case-next"><a href="medhealth.html"><p class="section-number">06 / Next project</p><h2>Medical &amp; Health<br />Application</h2><span>View case study →</span></a></section>
     </main>
-
-    <script>
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-            }
-          });
-        },
-        { threshold: 0.18 }
-      );
-
-      document.querySelectorAll("[data-reveal]").forEach((node) => revealObserver.observe(node));
-    </script>
   </body>
 </html>
-
-
-
-
-
-
-
-

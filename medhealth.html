@@ -6,13 +6,435 @@
     <title>Medical & Health Application - App Details</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bodoni+Moda:wght@500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-    </head>
-  <body class="subpage medhealth-page" id="top">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bodoni+Moda:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #fff4f9;
+        --bg-2: #f8d6e6;
+        --surface: #ffffff;
+        --text: #2a1c22;
+        --muted: #6f5a66;
+        --line: rgba(122, 58, 82, 0.16);
+        --accent: #d88ab6;
+        --accent-2: #7a3a52;
+        --shadow: 0 24px 70px rgba(122, 58, 82, 0.14);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        color: var(--text);
+        font-family: "Space Grotesk", sans-serif;
+        background: radial-gradient(circle at top left, #fff4f9 0%, #fde7f1 35%, #f8d6e6 70%, #f3c7da 100%);
+      }
+      a { color: inherit; text-decoration: none; }
+      img { display: block; max-width: 100%; }
+
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 18px clamp(20px, 4vw, 48px);
+        backdrop-filter: blur(14px);
+        background: rgba(255, 250, 252, 0.84);
+        border-bottom: 1px solid rgba(216, 138, 182, 0.26);
+      }
+
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Audiowide", sans-serif;
+        font-size: 22px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent-2);
+      }
+
+      .logo::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f9a9cf 0%, #d88ab6 100%);
+        box-shadow: 0 0 0 4px rgba(216, 138, 182, 0.12);
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .nav-links a {
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(122, 58, 82, 0.16);
+        background: rgba(255, 247, 251, 0.74);
+        box-shadow: 0 14px 28px rgba(122, 58, 82, 0.08);
+        font-family: "Audiowide", sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      .nav-links a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 32px rgba(122, 58, 82, 0.14);
+        background: rgba(255, 255, 255, 0.88);
+      }
+
+      .page {
+        width: min(1180px, calc(100vw - 40px));
+        margin: 0 auto;
+        padding: 112px 0 36px;
+      }
+
+      .panel {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.84);
+        box-shadow: var(--shadow);
+      }
+
+      .section {
+        margin-top: 22px;
+        padding: clamp(24px, 4vw, 44px);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: clamp(24px, 4vw, 52px);
+        align-items: center;
+      }
+
+      .hero-kicker,
+      .section-kicker,
+      .tile-label {
+        font-family: "Audiowide", sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent-2);
+      }
+
+      .hero-title {
+        margin: 0;
+        font-family: "Audiowide", sans-serif;
+        font-size: clamp(52px, 7vw, 92px);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+        text-transform: uppercase;
+        color: var(--accent-2);
+        text-shadow:
+          -2px -2px 0 rgba(122, 58, 82, 0.14),
+          2px 2px 0 rgba(216, 138, 182, 0.34),
+          0 0 30px rgba(216, 138, 182, 0.34);
+      }
+
+      .hero-copy p {
+        max-width: 650px;
+        margin: 18px 0 0;
+        font-size: clamp(17px, 1.7vw, 20px);
+        line-height: 1.7;
+        color: var(--muted);
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .meta-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255, 247, 251, 0.8);
+        border: 1px solid var(--line);
+        color: var(--accent-2);
+      }
+
+      .hero-visual {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(253, 231, 241, 0.94));
+        box-shadow: 0 18px 40px rgba(20, 33, 28, 0.1);
+      }
+
+      .hero-visual img {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        align-items: end;
+        margin-bottom: 22px;
+      }
+
+      .section-head h2 {
+        margin: 8px 0 0;
+        font-family: "Audiowide", sans-serif;
+        font-size: clamp(30px, 4vw, 52px);
+        line-height: 1.02;
+        letter-spacing: -0.055em;
+        text-transform: uppercase;
+        color: var(--accent-2);
+        text-shadow:
+          -1px -1px 0 rgba(122, 58, 82, 0.12),
+          1px 1px 0 rgba(216, 138, 182, 0.28);
+      }
+
+      .section-note {
+        max-width: 520px;
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .copy-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+        gap: 16px;
+        align-items: start;
+      }
+
+      .copy-card {
+        padding: 24px;
+        border-radius: 22px;
+        background: rgba(255, 247, 251, 0.82);
+        border: 1px solid var(--line);
+      }
+
+      .copy-card h3 {
+        margin: 12px 0 14px;
+        font-family: "Audiowide", sans-serif;
+        font-size: clamp(22px, 2.6vw, 33px);
+        line-height: 1.12;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+        color: var(--accent-2);
+      }
+
+      .copy-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .detail-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .detail-tile {
+        min-height: 150px;
+        padding: 20px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(253, 231, 241, 0.94));
+      }
+
+      .detail-tile strong {
+        display: block;
+        margin-top: 12px;
+        font-family: "Audiowide", sans-serif;
+        font-size: 18px;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        color: var(--accent-2);
+      }
+
+      .detail-tile p {
+        margin: 12px 0 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .shot-card {
+        overflow: hidden;
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        background: rgba(255, 247, 251, 0.84);
+      }
+
+      .shot-frame {
+        aspect-ratio: 4 / 5;
+        padding: 14px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 214, 230, 0.92));
+      }
+
+      .shot-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 18px;
+        background: #fff;
+      }
+
+      .shot-copy {
+        padding: 18px;
+      }
+
+      .shot-copy h3 {
+        margin: 10px 0 8px;
+        font-family: "Audiowide", sans-serif;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: -0.03em;
+        color: var(--accent-2);
+      }
+
+      .shot-copy p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .flow-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 16px;
+        align-items: start;
+      }
+
+      .flow-copy {
+        display: grid;
+        gap: 14px;
+      }
+
+      .flow-step {
+        padding: 18px 20px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: rgba(255, 247, 251, 0.84);
+      }
+
+      .flow-step strong {
+        display: block;
+        margin-bottom: 8px;
+        font-family: "Audiowide", sans-serif;
+        font-size: 18px;
+        text-transform: uppercase;
+        color: var(--accent-2);
+      }
+
+      .flow-step p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .flow-shot {
+        overflow: hidden;
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(253, 231, 241, 0.94));
+      }
+
+      .flow-shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .footer {
+        padding: 16px 4px 4px;
+        color: var(--muted);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        gap: 16px;
+        align-items: center;
+        padding: 14px 4px 6px;
+      }
+
+      .footer-license,
+      .footer-top {
+        font-family: "Audiowide", sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .footer-top {
+        color: var(--accent-2);
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .copy-grid,
+        .flow-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-grid,
+        .detail-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section-head {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          width: min(100vw - 24px, 1180px);
+          padding-top: 102px;
+        }
+
+        .nav {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .nav-links {
+          justify-content: flex-start;
+        }
+
+        .hero-title {
+          font-size: clamp(40px, 14vw, 64px);
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          justify-items: start;
+        }
+      }
+    </style>
+  </head>
+  <body id="top">
     <nav class="nav" aria-label="Main">
       <div class="logo">P.U.</div>
       <div class="nav-links">
@@ -23,156 +445,230 @@
       </div>
     </nav>
 
-    <main class="medhealth-shell">
-      <section class="kare-section kare-hero">
-        <div class="hero-board">
-          <aside class="hero-left" data-reveal>
-            <!-- <p class="hero-kicker">Retro Futurism Interface</p> -->
-            <div class="sync-tags">
-              <span class="sync-tag">Care Network</span>
-              <span class="sync-tag">Shared Tasks</span>
-              <span class="sync-tag">Signal Motion</span>
-            </div>
-          </aside>
-          <div class="hero-copy" data-reveal>
-            <h1 class="hero-title">Medical & Health Application</h1>
-          </div>
-        </div>
-      </section>
-
-      <!-- <section class="kare-section kare-preview">
-        <div class="section-head" data-reveal>
-          <div>
-            <p class="section-kicker">03 / App Image</p>
-            <h2 class="section-title">Device Cluster</h2>
-          </div>
-        </div>
-
-        <div class="preview-layout" data-reveal>
-          <div class="device-stage">
-            <div class="device-cluster">
-              <div class="device-shell">
-                <div class="device-screen">
-                  <div class="screen-fallback">
-                    <div class="fallback-stack">
-                      <span>Preview Pending</span>
-                      <strong>Medical & Health Application</strong>
-                      <p>Drop in `medhealth-app.png` to replace this placeholder screen.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="device-shell second">
-                <div class="device-screen">
-                  <div class="screen-fallback">
-                    <div class="fallback-stack">
-                      <span>Preview Pending</span>
-                      <strong>Care View</strong>
-                      <p>Use the same asset or a second mockup later for this paired screen.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <main class="page">
+      <section class="panel section">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="hero-kicker">Medical Management App</p>
+            <h1 class="hero-title">Medical &amp; Health Application</h1>
+            <p>A webapp for managing user medical data, doctors, hospitals, and doctor appointments.</p>
+            <div class="hero-meta" aria-label="Project highlights">
+              <span class="meta-chip">User medical data</span>
+              <span class="meta-chip">Doctors</span>
+              <span class="meta-chip">Hospitals</span>
+              <span class="meta-chip">Appointments</span>
             </div>
           </div>
-        </div>
-      </section> -->
 
-      <section class="kare-section kare-info">
-        <div class="section-head" data-reveal>
-          <div>
-            <p class="section-kicker">04 / Info Description</p>
-            <h2 class="section-title">Project Info</h2>
+          <div class="hero-visual" aria-label="Medical app preview">
+            <img src="assets/medhealth/dashboard.png" alt="Medical and health application dashboard preview" />
           </div>
-        </div>
-
-        <div class="info-grid" data-reveal>
-          <article class="info-card">
-            <span class="card-label">My Role</span>
-            <h3>Software Developer</h3>
-            <!-- <p>I defined the interaction structure, tuned the interface behavior, and translated care workflows into UI patterns that were easy to act on quickly.</p> -->
-          </article>
-          <article class="info-card">
-            <span class="card-label">Teams</span>
-            <h3>Product + Operations</h3>
-            <!-- <p>The work connected product planning, care coordination needs, and implementation constraints so each screen reflected real handoff behavior.</p> -->
-          </article>
-          <article class="info-card">
-            <span class="card-label">Project Overview</span>
-            <h3>Care Coordination</h3>
-            <!-- <p>Medical & Health Application was designed to centralize reminders, assignments, and status updates for groups that needed clarity across shared responsibilities.</p> -->
-          </article>
         </div>
       </section>
-<section class="kare-section kare-wireframes">
-        <div class="section-head" data-reveal>
+
+      <section class="panel section">
+        <div class="section-head">
           <div>
-            <p class="section-kicker">05 / Wireframes</p>
-            <h2 class="section-title">Flow + UI Boards</h2>
+            <p class="section-kicker">02 / App description</p>
+            <h2>One place for care records.</h2>
           </div>
-          <p class="section-summary">
-            The wireframe section stays in the same order as SwissCal, but uses a stacked board layout to feel more operational and less editorial.
-          </p>
+          <p class="section-note">The app keeps medical data, provider records, and appointment work together.</p>
         </div>
 
-        <div class="wireframe-stack-layout">
-          <article class="wireframe-card" data-reveal>
-            <span class="card-label">User Flow</span>
-            <h3>Task Handoff Map</h3>
-            <div class="wireframe-media">
-              <img src="medhealth-flow.png" alt="Medical & Health Application user flow" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;" />
-              <div class="wireframe-fallback flow" hidden>
-                <div class="wireframe-stack">
-                  <span>Mock Board</span>
-                  <strong>User Flow</strong>
-                  <p>This placeholder stays visible until `medhealth-flow.png` is added.</p>
-                </div>
-                <div class="flow-lattice" aria-hidden="true"></div>
-              </div>
+        <div class="copy-grid">
+          <article class="copy-card">
+            <p class="tile-label">App description</p>
+            <h3>Built for user medical data, doctor records, hospitals, and appointments.</h3>
+            <p>The interface is organized for quick access to care information and simple updates across the main record types.</p>
+          </article>
+
+          <div class="detail-grid">
+            <article class="detail-tile">
+              <p class="tile-label">User data</p>
+              <strong>Manage medical info.</strong>
+              <p>Keep user health records in one place.</p>
+            </article>
+            <article class="detail-tile">
+              <p class="tile-label">Doctors</p>
+              <strong>Track doctor records.</strong>
+              <p>Store provider details and related care context.</p>
+            </article>
+            <article class="detail-tile">
+              <p class="tile-label">Hospitals</p>
+              <strong>Organize hospital data.</strong>
+              <p>Link care locations and facility information.</p>
+            </article>
+            <article class="detail-tile">
+              <p class="tile-label">Appointments</p>
+              <strong>Manage bookings.</strong>
+              <p>Keep doctor appointments easy to review.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">03 / UI Info</p>
+            <h2>Information screens.</h2>
+          </div>
+          <p class="section-note">These screens show the main record and reference views in the app.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <article class="shot-card">
+            <div class="shot-frame">
+              <img src="assets/medhealth/info/profile.jpg" alt="Profile screen" />
+            </div>
+            <div class="shot-copy">
+              <p class="tile-label">Info</p>
+              <h3>Profile</h3>
+              <p>User identity and medical context.</p>
+            </div>
+          </article>
+
+          <article class="shot-card">
+            <div class="shot-frame">
+              <img src="assets/medhealth/info/med.jpg" alt="Medical record screen" />
+            </div>
+            <div class="shot-copy">
+              <p class="tile-label">Info</p>
+              <h3>Medical</h3>
+              <p>Core user health data.</p>
+            </div>
+          </article>
+
+          <article class="shot-card">
+            <div class="shot-frame">
+              <img src="assets/medhealth/info/doctor.jpg" alt="Doctor screen" />
+            </div>
+            <div class="shot-copy">
+              <p class="tile-label">Info</p>
+              <h3>Doctor</h3>
+              <p>Provider details and access.</p>
+            </div>
+          </article>
+
+          <article class="shot-card">
+            <div class="shot-frame">
+              <img src="assets/medhealth/info/hospital.jpg" alt="Hospital screen" />
+            </div>
+            <div class="shot-copy">
+              <p class="tile-label">Info</p>
+              <h3>Hospital</h3>
+              <p>Care locations and records.</p>
+            </div>
+          </article>
+
+          <article class="shot-card">
+            <div class="shot-frame">
+              <img src="assets/medhealth/info/docAppoinment.jpg" alt="Doctor appointment screen" />
+            </div>
+            <div class="shot-copy">
+              <p class="tile-label">Info</p>
+              <h3>Appointment</h3>
+              <p>Doctor visit scheduling.</p>
+            </div>
+          </article>
+
+          <article class="shot-card">
+            <div class="shot-frame">
+              <img src="assets/medhealth/info/menu.jpg" alt="Menu screen" />
+            </div>
+            <div class="shot-copy">
+              <p class="tile-label">Info</p>
+              <h3>Menu</h3>
+              <p>Main app navigation.</p>
             </div>
           </article>
         </div>
       </section>
 
-      <section class="kare-next">
-        <a class="next-link" href="business-dashboard.html" data-reveal>
-          <p class="section-kicker">06 / Next App</p>
-          <h2 class="next-app-title">Business Dashboard</h2>
-          <p class="next-note">Open next project</p>
-        </a>
+      <section class="panel section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">04 / Add Screens</p>
+            <h2>Data entry flow.</h2>
+          </div>
+          <p class="section-note">The add views keep creation simple for records, providers, hospitals, and appointments.</p>
+        </div>
+
+        <div class="flow-layout">
+          <div class="flow-copy">
+            <article class="flow-step">
+              <strong>Add medical data</strong>
+              <p>Create and update user health records.</p>
+            </article>
+            <article class="flow-step">
+              <strong>Add doctors</strong>
+              <p>Save doctor details for later use.</p>
+            </article>
+            <article class="flow-step">
+              <strong>Add hospitals</strong>
+              <p>Store hospital information and locations.</p>
+            </article>
+            <article class="flow-step">
+              <strong>Add appointments</strong>
+              <p>Set doctor appointments in the same flow.</p>
+            </article>
+          </div>
+
+          <div class="gallery-grid">
+            <article class="shot-card">
+              <div class="shot-frame">
+                <img src="assets/medhealth/add/addMed.jpg" alt="Add medical data screen" />
+              </div>
+              <div class="shot-copy">
+                <p class="tile-label">Add</p>
+                <h3>Medical</h3>
+                <p>Add user health data.</p>
+              </div>
+            </article>
+
+            <article class="shot-card">
+              <div class="shot-frame">
+                <img src="assets/medhealth/add/addDoctor.jpg" alt="Add doctor screen" />
+              </div>
+              <div class="shot-copy">
+                <p class="tile-label">Add</p>
+                <h3>Doctor</h3>
+                <p>Add provider details.</p>
+              </div>
+            </article>
+
+            <article class="shot-card">
+              <div class="shot-frame">
+                <img src="assets/medhealth/add/addHospital.jpg" alt="Add hospital screen" />
+              </div>
+              <div class="shot-copy">
+                <p class="tile-label">Add</p>
+                <h3>Hospital</h3>
+                <p>Add care location data.</p>
+              </div>
+            </article>
+
+            <article class="shot-card">
+              <div class="shot-frame">
+                <img src="assets/medhealth/add/addDocAppointment.jpg" alt="Add appointment screen" />
+              </div>
+              <div class="shot-copy">
+                <p class="tile-label">Add</p>
+                <h3>Appointment</h3>
+                <p>Add doctor visits quickly.</p>
+              </div>
+            </article>
+          </div>
+        </div>
       </section>
 
-      <footer class="kare-footer">
+      <section class="footer">
         <div class="footer-grid">
           <div></div>
           <div class="footer-license">A.POOMPALANG &copy; 2026</div>
           <a class="footer-top" href="#top">Go To Top</a>
         </div>
-      </footer>
+      </section>
     </main>
-
-    <script>
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-            }
-          });
-        },
-        { threshold: 0.18 }
-      );
-
-      document.querySelectorAll("[data-reveal]").forEach((node) => revealObserver.observe(node));
-    </script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
