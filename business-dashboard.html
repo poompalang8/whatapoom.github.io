@@ -3,536 +3,111 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Business Dashboard - Inventory Webapp</title>
+    <title>Business Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bodoni+Moda:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bodoni+Moda:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --bg: #fff4f9;
-        --bg-2: #f8d6e6;
-        --surface: #ffffff;
-        --surface-2: #fff0f6;
-        --text: #2a1c22;
-        --muted: #6f5a66;
-        --line: rgba(122, 58, 82, 0.16);
-        --line-strong: rgba(122, 58, 82, 0.24);
-        --accent: #d88ab6;
-        --accent-2: #7a3a52;
-        --accent-3: #7a3a52;
-        --shadow: 0 24px 70px rgba(122, 58, 82, 0.14);
+        --coral: #d88ab6;
+        --rose: #7a3a52;
+        --ink: #2a1c22;
+        --cream: #fff4f9;
+        --line: rgba(122,58,82,.17);
       }
-
       * { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        font-family: "Space Grotesk", sans-serif;
-        color: var(--text);
-        background:
-          radial-gradient(circle at top left, #fff4f9 0%, #fde7f1 35%, #f8d6e6 70%, #f3c7da 100%);
-      }
-
+      body { margin: 0; color: var(--ink); background: radial-gradient(circle at top left, #fff4f9 0%, #fde7f1 35%, #f8d6e6 70%, #f3c7da 100%); font-family: "Space Grotesk", sans-serif; }
       a { color: inherit; text-decoration: none; }
-      img { display: block; max-width: 100%; }
+      img { display: block; width: 100%; }
 
-      .nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 20;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        padding: 18px clamp(20px, 4vw, 48px);
-        backdrop-filter: blur(14px);
-        background: rgba(255, 250, 252, 0.84);
-        border-bottom: 1px solid rgba(216, 138, 182, 0.26);
+      .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 18px clamp(20px,4vw,48px); backdrop-filter: blur(14px); background: rgba(255,250,252,.84); border-bottom: 1px solid rgba(216,138,182,.26); }
+      .logo { display: inline-flex; align-items: center; gap: 12px; font-family: "Audiowide", sans-serif; font-size: 22px; letter-spacing: .18em; text-transform: uppercase; color: var(--rose); }
+      .logo::before { content:""; width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg, #f9a9cf 0%, #d88ab6 100%); box-shadow: 0 0 0 4px rgba(216,138,182,.12); }
+      .nav-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+      .nav-links a { padding: 10px 14px; border-radius: 999px; border: 1px solid rgba(122,58,82,.16); background: rgba(255,247,251,.74); box-shadow: 0 14px 28px rgba(122,58,82,.08); font-family: "Audiowide", sans-serif; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s cubic-bezier(.2,.8,.2,1), background .3s cubic-bezier(.2,.8,.2,1); }
+      .nav-links a:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(122,58,82,.14); background: rgba(255,255,255,.88); }
+
+      .page { width: min(1180px, calc(100vw - 40px)); margin: 0 auto; padding: 112px 0 36px; }
+      .panel { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 28px; background: rgba(255,255,255,.84); }
+      .section { margin-top: 22px; padding: clamp(24px,4vw,44px); }
+      .section::after { content:""; position:absolute; inset:auto 0 0; height:1px; background: linear-gradient(90deg, transparent 0%, rgba(122,58,82,.15) 20%, rgba(122,58,82,.15) 80%, transparent 100%); pointer-events:none; }
+
+      .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(24px,4vw,52px); align-items: center; }
+      .hero-kicker, .section-kicker, .feature-index, .tile-label { font-family: "Audiowide", sans-serif; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--rose); }
+      .hero-title, .section-head h2, .copy-card h3, .feature h3, .screen-card figcaption, .case-next h2 { font-family: "Audiowide", sans-serif; text-transform: uppercase; color: var(--rose); text-shadow: -1px -1px 0 rgba(122,58,82,.12), 1px 1px 0 rgba(216,138,182,.28); }
+      .hero-title { margin: 0; font-size: clamp(52px,7vw,92px); line-height: .95; letter-spacing: -.06em; }
+      .hero-copy p { max-width: 650px; margin: 18px 0 0; font-size: clamp(17px,1.7vw,20px); line-height: 1.7; color: #6f5a66; }
+      .hero-meta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+      .meta-chip { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 999px; background: rgba(255,247,251,.8); border: 1px solid var(--line); color: var(--rose); }
+      .hero-devices { position: relative; min-height: 520px; }
+      .hero-phone { position: absolute; width: min(190px,31vw); padding: 7px; background: linear-gradient(180deg, #fff7fb 0%, #f7d7e7 100%); border-radius: 29px; border: 1px solid rgba(122,58,82,.14); box-shadow: 0 24px 45px rgba(122,58,82,.24); transform-origin: bottom center; }
+      .hero-phone img { border-radius: 23px; aspect-ratio: 4 / 5; object-fit: cover; }
+      .hero-phone::after { content:""; position:absolute; width:32%; height:4px; border-radius:20px; background:var(--rose); top:10px; left:34%; }
+      .hero-phone.one { left: 4%; top: 80px; transform: rotate(-12deg); }
+      .hero-phone.two { left: 35%; top: 0; z-index: 2; transform: rotate(4deg); }
+      .hero-phone.three { right: 0; top: 110px; transform: rotate(13deg); }
+
+      .section-head { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin-bottom: 22px; position: relative; z-index: 1; }
+      .section-head h2 { margin: 8px 0 0; font-size: clamp(30px,4vw,52px); line-height: 1.02; letter-spacing: -.055em; }
+      .section-note { max-width: 520px; margin: 0; color: #6f5a66; line-height: 1.7; }
+
+      .overview-grid, .gallery-grid, .flow-layout { display: grid; gap: 16px; }
+      .overview-grid { grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); }
+      .copy-card, .detail-tile, .shot-card, .flow-step { background: rgba(255,247,251,.82); border: 1px solid var(--line); border-radius: 22px; }
+      .copy-card { padding: 24px; }
+      .copy-card h3 { margin: 12px 0 14px; font-size: clamp(22px,2.6vw,33px); line-height: 1.12; letter-spacing: -.03em; }
+      .copy-card p, .detail-tile p, .shot-copy p, .flow-step p { margin: 0; color: #6f5a66; line-height: 1.7; }
+      .detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+      .detail-tile { min-height: 150px; padding: 20px; background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(253,231,241,.94)); }
+      .detail-tile strong { display:block; margin-top: 12px; font-family: "Audiowide", sans-serif; font-size: 18px; text-transform: uppercase; color: var(--rose); }
+
+      .feature-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
+      .feature { min-height: 330px; padding: 22px; display:flex; flex-direction:column; background: rgba(255,247,251,.9); border: 1px solid var(--line); border-radius: 22px; }
+      .feature-top { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+      .feature-icon { width: 37px; height: 37px; display:grid; place-items:center; background: var(--coral); color:#fff; border-radius:50%; font-size:18px; }
+      .feature h3 { margin: 24px 0 10px; font-size: 23px; letter-spacing: -.03em; }
+      .feature p { margin: 0; color: #5e5c60; font-size: 14px; line-height: 1.6; }
+      .feature img { width: 108px; margin: 18px auto -22px; border-radius: 14px 14px 0 0; box-shadow: 0 12px 22px rgba(28,29,36,.18); }
+
+      .screen-grid { max-width: 1240px; margin: auto; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 22px; }
+      .screen-card { background: rgba(255,247,251,.9); border-radius: 20px; padding: 10px; overflow:hidden; border: 1px solid var(--line); }
+      .screen-card img { width:100%; display:block; border-radius: 13px; object-fit: cover; aspect-ratio: 4 / 5; background: #fff; }
+      .screen-card figcaption { padding: 14px 8px 5px; font-size: 11px; letter-spacing: .08em; color: var(--rose); }
+
+      .case-next { padding: 72px clamp(24px,7vw,112px); background: var(--coral); color: #fff; border-radius: 28px; margin-top: 22px; }
+      .case-next a { max-width: 1240px; margin: auto; display:block; }
+      .case-next h2 { margin: 14px 0 0; font-size: clamp(42px,7vw,92px); letter-spacing: -.06em; line-height: .94; text-shadow: -2px -2px 0 rgba(122,58,82,.14), 2px 2px 0 rgba(216,138,182,.34), 0 0 30px rgba(216,138,182,.34); }
+      .case-next span { display:inline-block; margin-top:24px; padding:11px 17px; border:1px solid rgba(255,255,255,.6); border-radius:100px; font:11px "Audiowide", sans-serif; text-transform: uppercase; letter-spacing: .08em; }
+
+      .footer-grid { display:grid; grid-template-columns: 1fr auto auto; gap:16px; align-items:center; padding:14px 4px 6px; color:#6f5a66; }
+      .footer-license, .footer-top { font-family: "Audiowide", sans-serif; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+
+      @media (max-width: 900px) {
+        .hero-grid, .overview-grid, .flow-layout { grid-template-columns: 1fr; }
+        .feature-grid, .screen-grid, .detail-grid { grid-template-columns: 1fr; }
+        .hero-devices { max-width: 520px; width: 100%; margin: auto; min-height: 390px; }
       }
-
-      .logo {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        font-family: "Audiowide", sans-serif;
-        font-size: 22px;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--accent-2);
-      }
-
-      .logo::before {
-        content: "";
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #f9a9cf 0%, #d88ab6 100%);
-        box-shadow: 0 0 0 4px rgba(216, 138, 182, 0.12);
-      }
-
-      .nav-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        gap: 8px;
-      }
-
-      .nav-links a {
-        padding: 10px 14px;
-        border-radius: 999px;
-        font-size: 14px;
-        color: var(--muted);
-        border: 1px solid rgba(122, 58, 82, 0.16);
-        background: rgba(255, 247, 251, 0.74);
-        box-shadow: 0 14px 28px rgba(122, 58, 82, 0.08);
-        font-size: 12px;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease);
-      }
-
-      .nav-links a:hover {
-        color: var(--text);
-        transform: translateY(-2px);
-        box-shadow: 0 16px 32px rgba(122, 58, 82, 0.14);
-        background: rgba(255, 255, 255, 0.88);
-      }
-
-      .business-shell {
-        width: min(1180px, calc(100vw - 40px));
-        margin: 0 auto;
-        padding: 112px 0 36px;
-      }
-
-      .panel {
-        position: relative;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: 28px;
-        background: rgba(255, 255, 255, 0.84);
-        box-shadow: var(--shadow);
-      }
-
-      .panel::after {
-        content: "";
-        position: absolute;
-        inset: auto -12% -24% auto;
-        width: 280px;
-        height: 280px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(216, 138, 182, 0.2), transparent 68%);
-        pointer-events: none;
-      }
-
-      .section {
-        margin-top: 22px;
-        padding: clamp(24px, 4vw, 44px);
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1.02fr 0.98fr;
-        gap: clamp(24px, 4vw, 52px);
-        align-items: center;
-      }
-
-      .hero-kicker,
-      .section-kicker,
-      .tile-label {
-        font-family: "Audiowide", sans-serif;
-        font-size: 12px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .hero-kicker {
-        color: var(--accent);
-        margin: 0 0 16px;
-      }
-
-      .hero-title {
-        margin: 0;
-        font-family: "Audiowide", sans-serif;
-        font-size: clamp(52px, 7vw, 92px);
-        line-height: 0.95;
-        letter-spacing: -0.06em;
-        text-transform: uppercase;
-        color: var(--accent-2);
-        text-shadow:
-          -2px -2px 0 rgba(122, 58, 82, 0.14),
-          2px 2px 0 rgba(216, 138, 182, 0.34),
-          0 0 30px rgba(216, 138, 182, 0.34);
-      }
-
-      .hero-copy p {
-        max-width: 640px;
-        margin: 18px 0 0;
-        font-size: clamp(17px, 1.7vw, 20px);
-        line-height: 1.7;
-        color: var(--muted);
-      }
-
-      .hero-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 28px;
-      }
-
-      .meta-chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 14px;
-        border-radius: 999px;
-        background: rgba(255, 247, 251, 0.8);
-        border: 1px solid var(--line);
-        font-size: 14px;
-        color: var(--accent-3);
-      }
-
-      .hero-visual {
-        position: relative;
-        min-height: 540px;
-        display: grid;
-        grid-template-columns: 1fr 0.92fr;
-        gap: 14px;
-        align-items: end;
-      }
-
-      .hero-shot,
-      .flow-shot,
-      .ui-shot {
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: 24px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(253, 231, 241, 0.94));
-        box-shadow: 0 18px 40px rgba(20, 33, 28, 0.1);
-      }
-
-      .hero-shot.primary {
-        transform: translateY(-18px);
-      }
-
-      .hero-shot.secondary {
-        transform: translateY(24px);
-      }
-
-      .hero-shot img,
-      .flow-shot img,
-      .ui-shot img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .hero-shot.primary { aspect-ratio: 4 / 5; }
-      .hero-shot.secondary { aspect-ratio: 3 / 4; }
-
-      .section-head {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 24px;
-        align-items: end;
-        margin-bottom: 22px;
-      }
-
-      .section-head h2 {
-        margin: 8px 0 0;
-        font-family: "Audiowide", sans-serif;
-        font-size: clamp(30px, 4vw, 52px);
-        line-height: 1.02;
-        letter-spacing: -0.055em;
-        text-transform: uppercase;
-        color: var(--accent-2);
-        text-shadow:
-          -1px -1px 0 rgba(122, 58, 82, 0.12),
-          1px 1px 0 rgba(216, 138, 182, 0.28);
-      }
-
-      .section-note {
-        max-width: 520px;
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .section-copy {
-        display: grid;
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-        gap: 16px;
-        align-items: start;
-      }
-
-      .copy-card {
-        padding: 24px;
-        border-radius: 22px;
-        background: rgba(255, 247, 251, 0.82);
-        border: 1px solid var(--line);
-      }
-
-      .copy-card h3 {
-        margin: 12px 0 14px;
-        font-family: "Audiowide", sans-serif;
-        font-size: clamp(22px, 2.6vw, 33px);
-        line-height: 1.12;
-        letter-spacing: -0.03em;
-        text-transform: uppercase;
-        color: var(--accent-2);
-      }
-
-      .copy-card p {
-        margin: 0;
-        line-height: 1.75;
-        color: var(--muted);
-      }
-
-      .detail-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-      }
-
-      .detail-tile {
-        min-height: 150px;
-        padding: 20px;
-        border-radius: 20px;
-        border: 1px solid var(--line);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(253, 231, 241, 0.94));
-      }
-
-      .detail-tile strong {
-        display: block;
-        margin-top: 12px;
-        font-size: 22px;
-        line-height: 1.1;
-        letter-spacing: -0.04em;
-      }
-
-      .detail-tile p {
-        margin: 12px 0 0;
-        color: var(--muted);
-        line-height: 1.65;
-      }
-
-      .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
-      }
-
-      .feature-card {
-        padding: 22px;
-        border-radius: 22px;
-        background: rgba(255, 247, 251, 0.82);
-        border: 1px solid var(--line);
-      }
-
-      .feature-card h3 {
-        margin: 14px 0 12px;
-        font-family: "Audiowide", sans-serif;
-        font-size: 22px;
-        line-height: 1.1;
-        letter-spacing: -0.03em;
-        text-transform: uppercase;
-        color: var(--accent-2);
-      }
-
-      .feature-card p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .shot-card {
-        overflow: hidden;
-        border-radius: 24px;
-        border: 1px solid var(--line);
-        background: rgba(255, 247, 251, 0.84);
-      }
-
-      .shot-frame {
-        aspect-ratio: 16 / 10;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 214, 230, 0.92));
-        padding: 16px;
-      }
-
-      .shot-frame img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        border-radius: 16px;
-        background: #fff;
-      }
-
-      .shot-copy {
-        padding: 18px 18px 20px;
-      }
-
-      .shot-copy h3 {
-        margin: 10px 0 8px;
-        font-family: "Audiowide", sans-serif;
-        font-size: 20px;
-        letter-spacing: -0.03em;
-        text-transform: uppercase;
-        color: var(--accent-2);
-      }
-
-      .shot-copy p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .flow-layout {
-        display: grid;
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-        gap: 16px;
-        align-items: start;
-      }
-
-      .flow-copy {
-        display: grid;
-        gap: 14px;
-      }
-
-      .flow-step {
-        padding: 18px 20px;
-        border-radius: 18px;
-        border: 1px solid var(--line);
-        background: rgba(255, 247, 251, 0.82);
-      }
-
-      .flow-step strong {
-        display: block;
-        margin-bottom: 8px;
-        font-size: 18px;
-        font-family: "Audiowide", sans-serif;
-        text-transform: uppercase;
-        color: var(--accent-2);
-      }
-
-      .flow-step p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .flow-shot {
-        aspect-ratio: 4 / 5;
-      }
-
-      .footer {
-        padding: 16px 4px 4px;
-        color: var(--muted);
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 1fr auto auto;
-        gap: 16px;
-        align-items: center;
-        padding: 14px 4px 6px;
-      }
-
-      .footer-top {
-        font-family: "Audiowide", sans-serif;
-        text-transform: uppercase;
-        font-size: 12px;
-        letter-spacing: 0.08em;
-      }
-
-      .footer-license {
-        font-family: "Audiowide", sans-serif;
-        font-size: 12px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .fade-in {
-        animation: fadeUp 700ms ease both;
-      }
-
-      @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(14px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-
-      @media (max-width: 980px) {
-        .hero-grid,
-        .section-copy,
-        .flow-layout {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-visual {
-          min-height: 440px;
-        }
-
-        .feature-grid,
-        .gallery-grid,
-        .detail-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .section-head {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .business-shell {
-          width: min(100vw - 24px, 1180px);
-          padding-top: 102px;
-        }
-
-        .nav {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .nav-links {
-          justify-content: flex-start;
-        }
-
-        .hero-title {
-          font-size: clamp(40px, 14vw, 64px);
-        }
-
-        .hero-visual {
-          min-height: 360px;
-          grid-template-columns: 1fr 0.86fr;
-        }
-
-        .hero-shot.primary {
-          transform: translateY(-8px);
-        }
-
-        .hero-shot.secondary {
-          transform: translateY(14px);
-        }
-
-        .detail-tile {
-          min-height: 132px;
-        }
-
-        .footer-grid {
-          grid-template-columns: 1fr;
-          justify-items: start;
-        }
+      @media (max-width: 580px) {
+        .page { width: min(100vw - 24px, 1180px); padding-top: 102px; }
+        .nav { flex-direction: column; align-items: flex-start; }
+        .nav-links { justify-content: flex-start; }
+        .hero-title { font-size: clamp(40px,14vw,64px); }
+        .hero-devices { min-height: 325px; }
+        .hero-phone { width: 140px; border-radius: 22px; }
+        .hero-phone img { border-radius: 17px; }
+        .hero-phone.one { left: 0; top: 62px; }
+        .hero-phone.two { left: 31%; }
+        .hero-phone.three { top: 75px; }
+        .section-head { display: block; }
+        .section-note { margin-top: 20px; }
+        .case-next { padding: 54px 20px; }
+        .footer-grid { grid-template-columns: 1fr; justify-items: start; }
       }
     </style>
   </head>
-  <body class="business-page" id="top">
-    <nav class="nav" aria-label="Main">
+  <body id="top">
+    <nav class="nav" aria-label="Main navigation">
       <div class="logo">P.U.</div>
       <div class="nav-links">
         <a href="index.html#top">Home</a>
@@ -542,27 +117,23 @@
       </div>
     </nav>
 
-    <main class="business-shell">
-      <section class="panel section fade-in">
+    <main class="page">
+      <section class="panel section">
         <div class="hero-grid">
-          <div class="hero-copy">
-            <p class="hero-kicker">Inventory Operations Webapp</p>
+          <div>
+            <p class="hero-kicker">Inventory Webapp</p>
             <h1 class="hero-title">Business Dashboard</h1>
-            <p>A stock webapp for managing stock, counting stock, and handling transfers between locations.</p>
-            <div class="hero-meta" aria-label="Project highlights">
+            <p>A webapp for managing stock, counting stock, and handling stock transfer between locations.</p>
+            <div class="hero-meta">
               <span class="meta-chip">Manage stock</span>
               <span class="meta-chip">Count stock</span>
               <span class="meta-chip">Stock transfer</span>
             </div>
           </div>
-
-          <div class="hero-visual" aria-label="Business webapp preview">
-            <figure class="hero-shot primary">
-              <img src="assets/business/ex1.png" alt="Business webapp UI screenshot 1" />
-            </figure>
-            <figure class="hero-shot secondary">
-              <img src="assets/business/ex2.png" alt="Business webapp UI screenshot 2" />
-            </figure>
+          <div class="hero-devices" aria-label="Business app previews">
+            <figure class="hero-phone one"><img src="assets/business/ex1.png" alt="Business dashboard preview 1" /></figure>
+            <figure class="hero-phone two"><img src="assets/business/flow.png" alt="Business flow preview" /></figure>
+            <figure class="hero-phone three"><img src="assets/business/ex2.png" alt="Business dashboard preview 2" /></figure>
           </div>
         </div>
       </section>
@@ -573,37 +144,19 @@
             <p class="section-kicker">02 / App description</p>
             <h2>Stock control in one webapp.</h2>
           </div>
-            <p class="section-note">Focused on stock management, counting, and transfer workflows.</p>
+          <p class="section-note">Focused on stock management, counting, and transfer workflows.</p>
         </div>
-
-        <div class="section-copy">
+        <div class="overview-grid">
           <article class="copy-card">
             <p class="tile-label">App description</p>
             <h3>A simple tool for stock, counts, and transfers.</h3>
             <p>Built to keep everyday inventory tasks quick and clear.</p>
           </article>
-
           <div class="detail-grid">
-            <article class="detail-tile">
-              <p class="tile-label">Manage stock</p>
-              <strong>Update stock records.</strong>
-              <p>Keep item quantities current.</p>
-            </article>
-            <article class="detail-tile">
-              <p class="tile-label">Count stock</p>
-              <strong>Count stock.</strong>
-              <p>Compare physical and system stock.</p>
-            </article>
-            <article class="detail-tile">
-              <p class="tile-label">Stock transfer</p>
-              <strong>Transfer stock.</strong>
-              <p>Move items between locations.</p>
-            </article>
-            <article class="detail-tile">
-              <p class="tile-label">Workflow</p>
-              <strong>Fast workflow.</strong>
-              <p>Clear steps and quick actions.</p>
-            </article>
+            <article class="detail-tile"><p class="tile-label">Manage stock</p><strong>Update stock records</strong><p>Keep item quantities current.</p></article>
+            <article class="detail-tile"><p class="tile-label">Count stock</p><strong>Count stock</strong><p>Compare physical and system stock.</p></article>
+            <article class="detail-tile"><p class="tile-label">Stock transfer</p><strong>Transfer stock</strong><p>Move items between locations.</p></article>
+            <article class="detail-tile"><p class="tile-label">Workflow</p><strong>Fast workflow</strong><p>Clear steps and quick actions.</p></article>
           </div>
         </div>
       </section>
@@ -611,90 +164,57 @@
       <section class="panel section">
         <div class="section-head">
           <div>
-            <p class="section-kicker">03 / UI Showcase</p>
-            <h2>UI screens.</h2>
+            <p class="section-kicker">03 / Core tools</p>
+            <h2>Core screens.</h2>
           </div>
-            <p class="section-note">Actual screens from the webapp.</p>
+          <p class="section-note">These views show the main work areas for the inventory app.</p>
         </div>
-
-        <div class="gallery-grid">
-          <article class="shot-card">
-            <div class="shot-frame">
-              <img src="assets/business/ex1.png" alt="Business webapp interface screenshot one" />
-            </div>
-            <div class="shot-copy">
-              <p class="tile-label">UI image</p>
-              <h3>Operations</h3>
-              <p>Main stock controls.</p>
-            </div>
-          </article>
-
-          <article class="shot-card">
-            <div class="shot-frame">
-              <img src="assets/business/ex2.png" alt="Business webapp interface screenshot two" />
-            </div>
-            <div class="shot-copy">
-              <p class="tile-label">UI image</p>
-              <h3>Management</h3>
-              <p>Inventory in view.</p>
-            </div>
-          </article>
+        <div class="feature-grid">
+          <article class="feature"><div class="feature-top"><span class="feature-index">01</span><span class="feature-icon">M</span></div><h3>Manage</h3><p>Update stock records.</p><img src="assets/business/ex1.png" alt="Manage stock screen" /></article>
+          <article class="feature"><div class="feature-top"><span class="feature-index">02</span><span class="feature-icon">C</span></div><h3>Count</h3><p>Check physical stock.</p><img src="assets/business/ex2.png" alt="Count stock screen" /></article>
+          <article class="feature"><div class="feature-top"><span class="feature-index">03</span><span class="feature-icon">T</span></div><h3>Transfer</h3><p>Move items between sites.</p><img src="assets/business/flow.png" alt="Transfer stock screen" /></article>
+          <article class="feature"><div class="feature-top"><span class="feature-index">04</span><span class="feature-icon">F</span></div><h3>Flow</h3><p>Clear process path.</p><img src="assets/business/flow.png" alt="Workflow screen" /></article>
         </div>
       </section>
 
       <section class="panel section">
         <div class="section-head">
           <div>
-            <p class="section-kicker">04 / Web App Flow</p>
-            <h2>Flow.</h2>
+            <p class="section-kicker">04 / UI Gallery</p>
+            <h2>Interface screens.</h2>
           </div>
-            <p class="section-note">Manage, count, then transfer.</p>
+          <p class="section-note">The dashboard, management, and flow views keep inventory work visible.</p>
         </div>
+        <div class="screen-grid">
+          <figure class="screen-card"><img src="assets/business/ex1.png" alt="Business interface screenshot 1" /><figcaption>Operations</figcaption></figure>
+          <figure class="screen-card"><img src="assets/business/ex2.png" alt="Business interface screenshot 2" /><figcaption>Management</figcaption></figure>
+          <figure class="screen-card"><img src="assets/business/flow.png" alt="Business flow image" /><figcaption>Flow</figcaption></figure>
+        </div>
+      </section>
 
+      <section class="panel section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">05 / Workflow</p>
+            <h2>Manage, count, transfer.</h2>
+          </div>
+          <p class="section-note">The process stays simple so teams can move through inventory work quickly.</p>
+        </div>
         <div class="flow-layout">
           <div class="flow-copy">
-            <article class="flow-step">
-              <strong>1. Manage</strong>
-              <p>Update stock records.</p>
-            </article>
-            <article class="flow-step">
-              <strong>2. Count</strong>
-              <p>Check physical stock.</p>
-            </article>
-            <article class="flow-step">
-              <strong>3. Transfer</strong>
-              <p>Move items between sites.</p>
-            </article>
+            <article class="flow-step"><strong>1. Manage</strong><p>Update stock records.</p></article>
+            <article class="flow-step"><strong>2. Count</strong><p>Check physical stock.</p></article>
+            <article class="flow-step"><strong>3. Transfer</strong><p>Move items between sites.</p></article>
           </div>
-
-          <figure class="flow-shot">
-            <img src="assets/business/flow.png" alt="Business webapp flow diagram" />
-          </figure>
+          <div class="screen-grid">
+            <figure class="screen-card"><img src="assets/business/ex1.png" alt="Business preview 1" /><figcaption>Manage</figcaption></figure>
+            <figure class="screen-card"><img src="assets/business/ex2.png" alt="Business preview 2" /><figcaption>Count</figcaption></figure>
+            <figure class="screen-card"><img src="assets/business/flow.png" alt="Business preview 3" /><figcaption>Transfer</figcaption></figure>
+          </div>
         </div>
       </section>
 
-      <section class="footer">
-        <div class="footer-grid">
-          <div></div>
-          <div class="footer-license">A.POOMPALANG &copy; 2026</div>
-          <a class="footer-top" href="#top">Go To Top</a>
-        </div>
-      </section>
+      <section class="case-next"><a href="swisscal.html"><p class="section-kicker">06 / Next project</p><h2>SwissCal</h2><span>View case study →</span></a></section>
     </main>
-
-    <script>
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("fade-in");
-            }
-          });
-        },
-        { threshold: 0.12 }
-      );
-
-      document.querySelectorAll(".panel").forEach((node) => revealObserver.observe(node));
-    </script>
   </body>
 </html>

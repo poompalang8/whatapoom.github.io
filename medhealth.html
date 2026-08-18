@@ -3,439 +3,111 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Medical & Health Application - App Details</title>
+    <title>Medical & Health Application</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bodoni+Moda:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --bg: #fff4f9;
-        --bg-2: #f8d6e6;
-        --surface: #ffffff;
-        --text: #2a1c22;
-        --muted: #6f5a66;
-        --line: rgba(122, 58, 82, 0.16);
-        --accent: #d88ab6;
-        --accent-2: #7a3a52;
-        --shadow: 0 24px 70px rgba(122, 58, 82, 0.14);
+        --coral: #d88ab6;
+        --rose: #7a3a52;
+        --ink: #2a1c22;
+        --cream: #fff4f9;
+        --line: rgba(122,58,82,.17);
       }
-
       * { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        color: var(--text);
-        font-family: "Space Grotesk", sans-serif;
-        background: radial-gradient(circle at top left, #fff4f9 0%, #fde7f1 35%, #f8d6e6 70%, #f3c7da 100%);
-      }
+      body { margin: 0; color: var(--ink); background: radial-gradient(circle at top left, #fff4f9 0%, #fde7f1 35%, #f8d6e6 70%, #f3c7da 100%); font-family: "Space Grotesk", sans-serif; }
       a { color: inherit; text-decoration: none; }
-      img { display: block; max-width: 100%; }
+      img { display: block; width: 100%; }
 
-      .nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 20;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        padding: 18px clamp(20px, 4vw, 48px);
-        backdrop-filter: blur(14px);
-        background: rgba(255, 250, 252, 0.84);
-        border-bottom: 1px solid rgba(216, 138, 182, 0.26);
+      .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 18px clamp(20px,4vw,48px); backdrop-filter: blur(14px); background: rgba(255,250,252,.84); border-bottom: 1px solid rgba(216,138,182,.26); }
+      .logo { display: inline-flex; align-items: center; gap: 12px; font-family: "Audiowide", sans-serif; font-size: 22px; letter-spacing: .18em; text-transform: uppercase; color: var(--rose); }
+      .logo::before { content:""; width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg, #f9a9cf 0%, #d88ab6 100%); box-shadow: 0 0 0 4px rgba(216,138,182,.12); }
+      .nav-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+      .nav-links a { padding: 10px 14px; border-radius: 999px; border: 1px solid rgba(122,58,82,.16); background: rgba(255,247,251,.74); box-shadow: 0 14px 28px rgba(122,58,82,.08); font-family: "Audiowide", sans-serif; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s cubic-bezier(.2,.8,.2,1), background .3s cubic-bezier(.2,.8,.2,1); }
+      .nav-links a:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(122,58,82,.14); background: rgba(255,255,255,.88); }
+
+      .page { width: min(1180px, calc(100vw - 40px)); margin: 0 auto; padding: 112px 0 36px; }
+      .panel { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 28px; background: rgba(255,255,255,.84); }
+      .section { margin-top: 22px; padding: clamp(24px,4vw,44px); }
+      .section::after { content:""; position:absolute; inset:auto 0 0; height:1px; background: linear-gradient(90deg, transparent 0%, rgba(122,58,82,.15) 20%, rgba(122,58,82,.15) 80%, transparent 100%); pointer-events:none; }
+
+      .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(24px,4vw,52px); align-items: center; }
+      .hero-kicker, .section-kicker, .feature-index, .tile-label { font-family: "Audiowide", sans-serif; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--rose); }
+      .hero-title, .section-head h2, .copy-card h3, .feature h3, .screen-card figcaption, .case-next h2 { font-family: "Audiowide", sans-serif; text-transform: uppercase; color: var(--rose); text-shadow: -1px -1px 0 rgba(122,58,82,.12), 1px 1px 0 rgba(216,138,182,.28); }
+      .hero-title { margin: 0; font-size: clamp(52px,7vw,92px); line-height: .95; letter-spacing: -.06em; }
+      .hero-copy p { max-width: 650px; margin: 18px 0 0; font-size: clamp(17px,1.7vw,20px); line-height: 1.7; color: #6f5a66; }
+      .hero-meta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+      .meta-chip { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 999px; background: rgba(255,247,251,.8); border: 1px solid var(--line); color: var(--rose); }
+      .hero-devices { position: relative; min-height: 520px; }
+      .hero-phone { position: absolute; width: min(190px,31vw); padding: 7px; background: linear-gradient(180deg, #fff7fb 0%, #f7d7e7 100%); border-radius: 29px; border: 1px solid rgba(122,58,82,.14); box-shadow: 0 24px 45px rgba(122,58,82,.24); transform-origin: bottom center; }
+      .hero-phone img { border-radius: 23px; aspect-ratio: 4 / 5; object-fit: cover; }
+      .hero-phone::after { content:""; position:absolute; width:32%; height:4px; border-radius:20px; background:var(--rose); top:10px; left:34%; }
+      .hero-phone.one { left: 4%; top: 80px; transform: rotate(-12deg); }
+      .hero-phone.two { left: 35%; top: 0; z-index: 2; transform: rotate(4deg); }
+      .hero-phone.three { right: 0; top: 110px; transform: rotate(13deg); }
+
+      .section-head { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin-bottom: 22px; position: relative; z-index: 1; }
+      .section-head h2 { margin: 8px 0 0; font-size: clamp(30px,4vw,52px); line-height: 1.02; letter-spacing: -.055em; }
+      .section-note { max-width: 520px; margin: 0; color: #6f5a66; line-height: 1.7; }
+
+      .overview-grid, .gallery-grid, .flow-layout { display: grid; gap: 16px; }
+      .overview-grid { grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); }
+      .copy-card, .detail-tile, .shot-card, .flow-step { background: rgba(255,247,251,.82); border: 1px solid var(--line); border-radius: 22px; }
+      .copy-card { padding: 24px; }
+      .copy-card h3 { margin: 12px 0 14px; font-size: clamp(22px,2.6vw,33px); line-height: 1.12; letter-spacing: -.03em; }
+      .copy-card p, .detail-tile p, .shot-copy p, .flow-step p { margin: 0; color: #6f5a66; line-height: 1.7; }
+      .detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+      .detail-tile { min-height: 150px; padding: 20px; background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(253,231,241,.94)); }
+      .detail-tile strong { display:block; margin-top: 12px; font-family: "Audiowide", sans-serif; font-size: 18px; text-transform: uppercase; color: var(--rose); }
+
+      .feature-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
+      .feature { min-height: 330px; padding: 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display:flex; flex-direction:column; background: rgba(255,247,251,.9); border: 1px solid var(--line); border-radius: 22px; }
+      .feature-top { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+      .feature-icon { width: 37px; height: 37px; display:grid; place-items:center; background: var(--coral); color:#fff; border-radius:50%; font-size:18px; }
+      .feature h3 { margin: 24px 0 10px; font-size: 23px; letter-spacing: -.03em; }
+      .feature p { margin: 0; color: #5e5c60; font-size: 14px; line-height: 1.6; }
+      .feature img { width: 108px; margin: 18px auto -22px; border-radius: 14px 14px 0 0; box-shadow: 0 12px 22px rgba(28,29,36,.18); }
+
+      .screen-grid { max-width: 1240px; margin: auto; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 22px; }
+      .screen-card { background: rgba(255,247,251,.9); border-radius: 20px; padding: 10px; overflow:hidden; border: 1px solid var(--line); }
+      .screen-card img { width:100%; display:block; border-radius: 13px; object-fit: cover; aspect-ratio: 4 / 5; background: #fff; }
+      .screen-card figcaption { padding: 14px 8px 5px; font-size: 11px; letter-spacing: .08em; color: var(--rose); }
+
+      .case-next { padding: 72px clamp(24px,7vw,112px); background: var(--coral); color: #fff; border-radius: 28px; margin-top: 22px; }
+      .case-next a { max-width: 1240px; margin: auto; display:block; }
+      .case-next h2 { margin: 14px 0 0; font-size: clamp(42px,7vw,92px); letter-spacing: -.06em; line-height: .94; text-shadow: -2px -2px 0 rgba(122,58,82,.14), 2px 2px 0 rgba(216,138,182,.34), 0 0 30px rgba(216,138,182,.34); }
+      .case-next span { display:inline-block; margin-top:24px; padding:11px 17px; border:1px solid rgba(255,255,255,.6); border-radius:100px; font:11px "Audiowide", sans-serif; text-transform: uppercase; letter-spacing: .08em; }
+
+      .footer-grid { display:grid; grid-template-columns: 1fr auto auto; gap:16px; align-items:center; padding:14px 4px 6px; color:#6f5a66; }
+      .footer-license, .footer-top { font-family: "Audiowide", sans-serif; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+
+      @media (max-width: 900px) {
+        .hero-grid, .overview-grid, .flow-layout { grid-template-columns: 1fr; }
+        .feature-grid, .screen-grid, .detail-grid { grid-template-columns: 1fr; }
+        .hero-devices { max-width: 520px; width: 100%; margin: auto; min-height: 390px; }
       }
-
-      .logo {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        font-family: "Audiowide", sans-serif;
-        font-size: 22px;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--accent-2);
-      }
-
-      .logo::before {
-        content: "";
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #f9a9cf 0%, #d88ab6 100%);
-        box-shadow: 0 0 0 4px rgba(216, 138, 182, 0.12);
-      }
-
-      .nav-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        gap: 10px;
-      }
-
-      .nav-links a {
-        padding: 10px 14px;
-        border-radius: 999px;
-        border: 1px solid rgba(122, 58, 82, 0.16);
-        background: rgba(255, 247, 251, 0.74);
-        box-shadow: 0 14px 28px rgba(122, 58, 82, 0.08);
-        font-family: "Audiowide", sans-serif;
-        font-size: 12px;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-      }
-
-      .nav-links a:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 16px 32px rgba(122, 58, 82, 0.14);
-        background: rgba(255, 255, 255, 0.88);
-      }
-
-      .page {
-        width: min(1180px, calc(100vw - 40px));
-        margin: 0 auto;
-        padding: 112px 0 36px;
-      }
-
-      .panel {
-        position: relative;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: 28px;
-        background: rgba(255, 255, 255, 0.84);
-        box-shadow: var(--shadow);
-      }
-
-      .section {
-        margin-top: 22px;
-        padding: clamp(24px, 4vw, 44px);
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1.05fr 0.95fr;
-        gap: clamp(24px, 4vw, 52px);
-        align-items: center;
-      }
-
-      .hero-kicker,
-      .section-kicker,
-      .tile-label {
-        font-family: "Audiowide", sans-serif;
-        font-size: 12px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--accent-2);
-      }
-
-      .hero-title {
-        margin: 0;
-        font-family: "Audiowide", sans-serif;
-        font-size: clamp(52px, 7vw, 92px);
-        line-height: 0.95;
-        letter-spacing: -0.06em;
-        text-transform: uppercase;
-        color: var(--accent-2);
-        text-shadow:
-          -2px -2px 0 rgba(122, 58, 82, 0.14),
-          2px 2px 0 rgba(216, 138, 182, 0.34),
-          0 0 30px rgba(216, 138, 182, 0.34);
-      }
-
-      .hero-copy p {
-        max-width: 650px;
-        margin: 18px 0 0;
-        font-size: clamp(17px, 1.7vw, 20px);
-        line-height: 1.7;
-        color: var(--muted);
-      }
-
-      .hero-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 28px;
-      }
-
-      .meta-chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 14px;
-        border-radius: 999px;
-        background: rgba(255, 247, 251, 0.8);
-        border: 1px solid var(--line);
-        color: var(--accent-2);
-      }
-
-      .hero-visual {
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: 28px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(253, 231, 241, 0.94));
-        box-shadow: 0 18px 40px rgba(20, 33, 28, 0.1);
-      }
-
-      .hero-visual img {
-        width: 100%;
-        aspect-ratio: 4 / 5;
-        object-fit: cover;
-      }
-
-      .section-head {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 24px;
-        align-items: end;
-        margin-bottom: 22px;
-      }
-
-      .section-head h2 {
-        margin: 8px 0 0;
-        font-family: "Audiowide", sans-serif;
-        font-size: clamp(30px, 4vw, 52px);
-        line-height: 1.02;
-        letter-spacing: -0.055em;
-        text-transform: uppercase;
-        color: var(--accent-2);
-        text-shadow:
-          -1px -1px 0 rgba(122, 58, 82, 0.12),
-          1px 1px 0 rgba(216, 138, 182, 0.28);
-      }
-
-      .section-note {
-        max-width: 520px;
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .copy-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
-        gap: 16px;
-        align-items: start;
-      }
-
-      .copy-card {
-        padding: 24px;
-        border-radius: 22px;
-        background: rgba(255, 247, 251, 0.82);
-        border: 1px solid var(--line);
-      }
-
-      .copy-card h3 {
-        margin: 12px 0 14px;
-        font-family: "Audiowide", sans-serif;
-        font-size: clamp(22px, 2.6vw, 33px);
-        line-height: 1.12;
-        letter-spacing: -0.03em;
-        text-transform: uppercase;
-        color: var(--accent-2);
-      }
-
-      .copy-card p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.75;
-      }
-
-      .detail-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-      }
-
-      .detail-tile {
-        min-height: 150px;
-        padding: 20px;
-        border-radius: 20px;
-        border: 1px solid var(--line);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(253, 231, 241, 0.94));
-      }
-
-      .detail-tile strong {
-        display: block;
-        margin-top: 12px;
-        font-family: "Audiowide", sans-serif;
-        font-size: 18px;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
-        text-transform: uppercase;
-        color: var(--accent-2);
-      }
-
-      .detail-tile p {
-        margin: 12px 0 0;
-        color: var(--muted);
-        line-height: 1.65;
-      }
-
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .shot-card {
-        overflow: hidden;
-        border-radius: 24px;
-        border: 1px solid var(--line);
-        background: rgba(255, 247, 251, 0.84);
-      }
-
-      .shot-frame {
-        aspect-ratio: 4 / 5;
-        padding: 14px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 214, 230, 0.92));
-      }
-
-      .shot-frame img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        border-radius: 18px;
-        background: #fff;
-      }
-
-      .shot-copy {
-        padding: 18px;
-      }
-
-      .shot-copy h3 {
-        margin: 10px 0 8px;
-        font-family: "Audiowide", sans-serif;
-        font-size: 20px;
-        text-transform: uppercase;
-        letter-spacing: -0.03em;
-        color: var(--accent-2);
-      }
-
-      .shot-copy p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .flow-layout {
-        display: grid;
-        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-        gap: 16px;
-        align-items: start;
-      }
-
-      .flow-copy {
-        display: grid;
-        gap: 14px;
-      }
-
-      .flow-step {
-        padding: 18px 20px;
-        border-radius: 18px;
-        border: 1px solid var(--line);
-        background: rgba(255, 247, 251, 0.84);
-      }
-
-      .flow-step strong {
-        display: block;
-        margin-bottom: 8px;
-        font-family: "Audiowide", sans-serif;
-        font-size: 18px;
-        text-transform: uppercase;
-        color: var(--accent-2);
-      }
-
-      .flow-step p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .flow-shot {
-        overflow: hidden;
-        border-radius: 24px;
-        border: 1px solid var(--line);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(253, 231, 241, 0.94));
-      }
-
-      .flow-shot img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .footer {
-        padding: 16px 4px 4px;
-        color: var(--muted);
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 1fr auto auto;
-        gap: 16px;
-        align-items: center;
-        padding: 14px 4px 6px;
-      }
-
-      .footer-license,
-      .footer-top {
-        font-family: "Audiowide", sans-serif;
-        font-size: 12px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .footer-top {
-        color: var(--accent-2);
-      }
-
-      @media (max-width: 980px) {
-        .hero-grid,
-        .copy-grid,
-        .flow-layout {
-          grid-template-columns: 1fr;
-        }
-
-        .gallery-grid,
-        .detail-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .section-head {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .page {
-          width: min(100vw - 24px, 1180px);
-          padding-top: 102px;
-        }
-
-        .nav {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .nav-links {
-          justify-content: flex-start;
-        }
-
-        .hero-title {
-          font-size: clamp(40px, 14vw, 64px);
-        }
-
-        .footer-grid {
-          grid-template-columns: 1fr;
-          justify-items: start;
-        }
+      @media (max-width: 580px) {
+        .page { width: min(100vw - 24px, 1180px); padding-top: 102px; }
+        .nav { flex-direction: column; align-items: flex-start; }
+        .nav-links { justify-content: flex-start; }
+        .hero-title { font-size: clamp(40px,14vw,64px); }
+        .hero-devices { min-height: 325px; }
+        .hero-phone { width: 140px; border-radius: 22px; }
+        .hero-phone img { border-radius: 17px; }
+        .hero-phone.one { left: 0; top: 62px; }
+        .hero-phone.two { left: 31%; }
+        .hero-phone.three { top: 75px; }
+        .section-head { display: block; }
+        .section-note { margin-top: 20px; }
+        .case-next { padding: 54px 20px; }
+        .footer-grid { grid-template-columns: 1fr; justify-items: start; }
       }
     </style>
   </head>
   <body id="top">
-    <nav class="nav" aria-label="Main">
+    <nav class="nav" aria-label="Main navigation">
       <div class="logo">P.U.</div>
       <div class="nav-links">
         <a href="index.html#top">Home</a>
@@ -448,20 +120,21 @@
     <main class="page">
       <section class="panel section">
         <div class="hero-grid">
-          <div class="hero-copy">
+          <div>
             <p class="hero-kicker">Medical Management App</p>
             <h1 class="hero-title">Medical &amp; Health Application</h1>
             <p>A webapp for managing user medical data, doctors, hospitals, and doctor appointments.</p>
-            <div class="hero-meta" aria-label="Project highlights">
+            <div class="hero-meta">
               <span class="meta-chip">User medical data</span>
               <span class="meta-chip">Doctors</span>
               <span class="meta-chip">Hospitals</span>
               <span class="meta-chip">Appointments</span>
             </div>
           </div>
-
-          <div class="hero-visual" aria-label="Medical app preview">
-            <img src="assets/medhealth/dashboard.png" alt="Medical and health application dashboard preview" />
+          <div class="hero-devices" aria-label="Medical app previews">
+            <figure class="hero-phone one"><img src="assets/medhealth/dashboard.png" alt="Medical dashboard preview" /></figure>
+            <figure class="hero-phone two"><img src="assets/medhealth/info/profile.jpg" alt="Profile screen preview" /></figure>
+            <figure class="hero-phone three"><img src="assets/medhealth/info/doctor.jpg" alt="Doctor screen preview" /></figure>
           </div>
         </div>
       </section>
@@ -474,35 +147,17 @@
           </div>
           <p class="section-note">The app keeps medical data, provider records, and appointment work together.</p>
         </div>
-
-        <div class="copy-grid">
+        <div class="overview-grid">
           <article class="copy-card">
             <p class="tile-label">App description</p>
             <h3>Built for user medical data, doctor records, hospitals, and appointments.</h3>
             <p>The interface is organized for quick access to care information and simple updates across the main record types.</p>
           </article>
-
           <div class="detail-grid">
-            <article class="detail-tile">
-              <p class="tile-label">User data</p>
-              <strong>Manage medical info.</strong>
-              <p>Keep user health records in one place.</p>
-            </article>
-            <article class="detail-tile">
-              <p class="tile-label">Doctors</p>
-              <strong>Track doctor records.</strong>
-              <p>Store provider details and related care context.</p>
-            </article>
-            <article class="detail-tile">
-              <p class="tile-label">Hospitals</p>
-              <strong>Organize hospital data.</strong>
-              <p>Link care locations and facility information.</p>
-            </article>
-            <article class="detail-tile">
-              <p class="tile-label">Appointments</p>
-              <strong>Manage bookings.</strong>
-              <p>Keep doctor appointments easy to review.</p>
-            </article>
+            <article class="detail-tile"><p class="tile-label">User data</p><strong>Manage medical info</strong><p>Keep user health records in one place.</p></article>
+            <article class="detail-tile"><p class="tile-label">Doctors</p><strong>Track doctors</strong><p>Store provider details and care context.</p></article>
+            <article class="detail-tile"><p class="tile-label">Hospitals</p><strong>Organize hospitals</strong><p>Link care locations and facility info.</p></article>
+            <article class="detail-tile"><p class="tile-label">Appointments</p><strong>Manage bookings</strong><p>Keep doctor appointments easy to review.</p></article>
           </div>
         </div>
       </section>
@@ -510,165 +165,62 @@
       <section class="panel section">
         <div class="section-head">
           <div>
-            <p class="section-kicker">03 / UI Info</p>
+            <p class="section-kicker">03 / Core tools</p>
+            <h2>Core screens.</h2>
+          </div>
+          <p class="section-note">These views show the main work areas for the medical app.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature"><div class="feature-top"><span class="feature-index">01</span><span class="feature-icon">P</span></div><h3>Profile</h3><p>User identity and medical context.</p><img src="assets/medhealth/info/profile.jpg" alt="Profile screen" /></article>
+          <article class="feature"><div class="feature-top"><span class="feature-index">02</span><span class="feature-icon">M</span></div><h3>Medical</h3><p>Core user health data.</p><img src="assets/medhealth/info/med.jpg" alt="Medical screen" /></article>
+          <article class="feature"><div class="feature-top"><span class="feature-index">03</span><span class="feature-icon">D</span></div><h3>Doctor</h3><p>Provider details and access.</p><img src="assets/medhealth/info/doctor.jpg" alt="Doctor screen" /></article>
+          <article class="feature"><div class="feature-top"><span class="feature-index">04</span><span class="feature-icon">H</span></div><h3>Hospital</h3><p>Care locations and records.</p><img src="assets/medhealth/info/hospital.jpg" alt="Hospital screen" /></article>
+        </div>
+      </section>
+
+      <section class="panel section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">04 / UI Gallery</p>
             <h2>Information screens.</h2>
           </div>
-          <p class="section-note">These screens show the main record and reference views in the app.</p>
+          <p class="section-note">Record views for the app’s main medical sections.</p>
         </div>
-
-        <div class="gallery-grid">
-          <article class="shot-card">
-            <div class="shot-frame">
-              <img src="assets/medhealth/info/profile.jpg" alt="Profile screen" />
-            </div>
-            <div class="shot-copy">
-              <p class="tile-label">Info</p>
-              <h3>Profile</h3>
-              <p>User identity and medical context.</p>
-            </div>
-          </article>
-
-          <article class="shot-card">
-            <div class="shot-frame">
-              <img src="assets/medhealth/info/med.jpg" alt="Medical record screen" />
-            </div>
-            <div class="shot-copy">
-              <p class="tile-label">Info</p>
-              <h3>Medical</h3>
-              <p>Core user health data.</p>
-            </div>
-          </article>
-
-          <article class="shot-card">
-            <div class="shot-frame">
-              <img src="assets/medhealth/info/doctor.jpg" alt="Doctor screen" />
-            </div>
-            <div class="shot-copy">
-              <p class="tile-label">Info</p>
-              <h3>Doctor</h3>
-              <p>Provider details and access.</p>
-            </div>
-          </article>
-
-          <article class="shot-card">
-            <div class="shot-frame">
-              <img src="assets/medhealth/info/hospital.jpg" alt="Hospital screen" />
-            </div>
-            <div class="shot-copy">
-              <p class="tile-label">Info</p>
-              <h3>Hospital</h3>
-              <p>Care locations and records.</p>
-            </div>
-          </article>
-
-          <article class="shot-card">
-            <div class="shot-frame">
-              <img src="assets/medhealth/info/docAppoinment.jpg" alt="Doctor appointment screen" />
-            </div>
-            <div class="shot-copy">
-              <p class="tile-label">Info</p>
-              <h3>Appointment</h3>
-              <p>Doctor visit scheduling.</p>
-            </div>
-          </article>
-
-          <article class="shot-card">
-            <div class="shot-frame">
-              <img src="assets/medhealth/info/menu.jpg" alt="Menu screen" />
-            </div>
-            <div class="shot-copy">
-              <p class="tile-label">Info</p>
-              <h3>Menu</h3>
-              <p>Main app navigation.</p>
-            </div>
-          </article>
+        <div class="screen-grid">
+          <figure class="screen-card"><img src="assets/medhealth/info/profile.jpg" alt="Profile screen" /><figcaption>Profile</figcaption></figure>
+          <figure class="screen-card"><img src="assets/medhealth/info/med.jpg" alt="Medical record screen" /><figcaption>Medical</figcaption></figure>
+          <figure class="screen-card"><img src="assets/medhealth/info/doctor.jpg" alt="Doctor screen" /><figcaption>Doctor</figcaption></figure>
+          <figure class="screen-card"><img src="assets/medhealth/info/hospital.jpg" alt="Hospital screen" /><figcaption>Hospital</figcaption></figure>
+          <figure class="screen-card"><img src="assets/medhealth/info/docAppoinment.jpg" alt="Doctor appointment screen" /><figcaption>Appointment</figcaption></figure>
+          <figure class="screen-card"><img src="assets/medhealth/info/menu.jpg" alt="Menu screen" /><figcaption>Menu</figcaption></figure>
         </div>
       </section>
 
       <section class="panel section">
         <div class="section-head">
           <div>
-            <p class="section-kicker">04 / Add Screens</p>
+            <p class="section-kicker">05 / Add Gallery</p>
             <h2>Data entry flow.</h2>
           </div>
-          <p class="section-note">The add views keep creation simple for records, providers, hospitals, and appointments.</p>
+          <p class="section-note">Add screens keep record creation simple for users, doctors, hospitals, and appointments.</p>
         </div>
-
         <div class="flow-layout">
           <div class="flow-copy">
-            <article class="flow-step">
-              <strong>Add medical data</strong>
-              <p>Create and update user health records.</p>
-            </article>
-            <article class="flow-step">
-              <strong>Add doctors</strong>
-              <p>Save doctor details for later use.</p>
-            </article>
-            <article class="flow-step">
-              <strong>Add hospitals</strong>
-              <p>Store hospital information and locations.</p>
-            </article>
-            <article class="flow-step">
-              <strong>Add appointments</strong>
-              <p>Set doctor appointments in the same flow.</p>
-            </article>
+            <article class="flow-step"><strong>1. Add medical</strong><p>Create and update user health records.</p></article>
+            <article class="flow-step"><strong>2. Add doctor</strong><p>Save doctor details for later use.</p></article>
+            <article class="flow-step"><strong>3. Add hospital</strong><p>Store hospital information and locations.</p></article>
+            <article class="flow-step"><strong>4. Add appointment</strong><p>Set doctor appointments in the same flow.</p></article>
           </div>
-
-          <div class="gallery-grid">
-            <article class="shot-card">
-              <div class="shot-frame">
-                <img src="assets/medhealth/add/addMed.jpg" alt="Add medical data screen" />
-              </div>
-              <div class="shot-copy">
-                <p class="tile-label">Add</p>
-                <h3>Medical</h3>
-                <p>Add user health data.</p>
-              </div>
-            </article>
-
-            <article class="shot-card">
-              <div class="shot-frame">
-                <img src="assets/medhealth/add/addDoctor.jpg" alt="Add doctor screen" />
-              </div>
-              <div class="shot-copy">
-                <p class="tile-label">Add</p>
-                <h3>Doctor</h3>
-                <p>Add provider details.</p>
-              </div>
-            </article>
-
-            <article class="shot-card">
-              <div class="shot-frame">
-                <img src="assets/medhealth/add/addHospital.jpg" alt="Add hospital screen" />
-              </div>
-              <div class="shot-copy">
-                <p class="tile-label">Add</p>
-                <h3>Hospital</h3>
-                <p>Add care location data.</p>
-              </div>
-            </article>
-
-            <article class="shot-card">
-              <div class="shot-frame">
-                <img src="assets/medhealth/add/addDocAppointment.jpg" alt="Add appointment screen" />
-              </div>
-              <div class="shot-copy">
-                <p class="tile-label">Add</p>
-                <h3>Appointment</h3>
-                <p>Add doctor visits quickly.</p>
-              </div>
-            </article>
+          <div class="screen-grid">
+            <figure class="screen-card"><img src="assets/medhealth/add/addMed.jpg" alt="Add medical data screen" /><figcaption>Add medical</figcaption></figure>
+            <figure class="screen-card"><img src="assets/medhealth/add/addDoctor.jpg" alt="Add doctor screen" /><figcaption>Add doctor</figcaption></figure>
+            <figure class="screen-card"><img src="assets/medhealth/add/addHospital.jpg" alt="Add hospital screen" /><figcaption>Add hospital</figcaption></figure>
+            <figure class="screen-card"><img src="assets/medhealth/add/addDocAppointment.jpg" alt="Add appointment screen" /><figcaption>Add appointment</figcaption></figure>
           </div>
         </div>
       </section>
 
-      <section class="footer">
-        <div class="footer-grid">
-          <div></div>
-          <div class="footer-license">A.POOMPALANG &copy; 2026</div>
-          <a class="footer-top" href="#top">Go To Top</a>
-        </div>
-      </section>
+      <section class="case-next"><a href="business-dashboard.html"><p class="section-kicker">06 / Next project</p><h2>Business Dashboard</h2><span>View case study →</span></a></section>
     </main>
   </body>
 </html>
